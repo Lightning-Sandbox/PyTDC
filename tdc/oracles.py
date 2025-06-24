@@ -17,6 +17,9 @@ from .metadata import (
     docking_target_info,
 )
 
+SKLEARN_VERSION = version.parse(
+    pkg_resources.get_distribution("scikit-learn").version)
+
 
 def _normalize_docking_score(raw_score):
     return 1 / (1 + np.exp((raw_score + 7.5)))
@@ -34,6 +37,11 @@ class Oracle:
 
     def __init__(self, name, target_smiles=None, num_max_call=None, **kwargs):
         """Summary"""
+
+        if SKLEARN_VERSION >= version.parse("1.3.0"):
+            raise ImportError(
+                "For loading the Oracle, please install sklearn<1.3.0, "
+                "e.g., pip install 'scikit-learn<1.3.0'")
         self.target_smiles = target_smiles
         self.kwargs = kwargs
         self.normalize = lambda x: x
