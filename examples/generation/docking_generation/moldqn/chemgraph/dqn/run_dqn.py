@@ -25,28 +25,24 @@ import json
 import os
 import time
 
+import numpy as np
+import tensorflow.compat.v1 as tf
 from absl import app
 from absl import flags
 from absl import logging
 from baselines.common import schedules
 from baselines.deepq import replay_buffer
-
-import numpy as np
-
+from dqn import deep_q_networks
+from dqn import molecules as molecules_mdp
+from dqn.py import molecules
+from dqn.tensorflow_core import core
 from rdkit import Chem
 from rdkit import DataStructs
 from rdkit.Chem import AllChem
 from rdkit.Chem import Descriptors
 from rdkit.Chem import QED
-
 from six.moves import range
-import tensorflow.compat.v1 as tf
 from tensorflow.compat.v1 import gfile
-
-from dqn import deep_q_networks
-from dqn import molecules as molecules_mdp
-from dqn.py import molecules
-from dqn.tensorflow_core import core
 
 flags.DEFINE_string(
     "model_dir",

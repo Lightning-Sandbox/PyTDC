@@ -39,9 +39,7 @@ from tensorflow.compat.v1 import gfile
 from dqn import deep_q_networks
 from dqn import molecules as molecules_mdp
 from dqn import run_dqn
-from dqn.py import molecules
 from dqn.tensorflow_core import core
-
 from tdc import Oracle
 
 qed = Oracle(name="qed")

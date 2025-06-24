@@ -1,14 +1,15 @@
-import unittest
 import shutil
+import unittest
+
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 from tdc.benchmark_group import admet_group, scdti_group, counterfactual_group, geneperturb_group
 from tdc.benchmark_group.protein_peptide_group import ProteinPeptideGroup
-from tdc.multi_pred.proteinpeptide import ProteinPeptide
-from sklearn.model_selection import train_test_split
-from tdc.multi_pred.perturboutcome import PerturbOutcome
-from tdc.dataset_configs.config_map import scperturb_datasets, scperturb_gene_datasets
 from tdc.benchmark_group.tcrepitope_group import TCREpitopeGroup
+from tdc.dataset_configs.config_map import scperturb_datasets, scperturb_gene_datasets
+from tdc.multi_pred.perturboutcome import PerturbOutcome
+from tdc.multi_pred.proteinpeptide import ProteinPeptide
 from tdc.resource.dataloader import DataLoader
 
 

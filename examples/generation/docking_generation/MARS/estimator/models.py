@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
-from torch import nn
 from dgl.nn.pytorch.glob import Set2Set
+from torch import nn
 
 from ..common.nn import GraphEncoder, MLP
 

@@ -20,12 +20,11 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+# from rdkit.Contrib.SA_Score import sascorer
+from dqn.py.SA_Score import sascorer
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 from rdkit.Chem.Scaffolds import MurckoScaffold
-
-# from rdkit.Contrib.SA_Score import sascorer
-from dqn.py.SA_Score import sascorer
 
 ## dqn/py/SA_Score/sascorer.py
 

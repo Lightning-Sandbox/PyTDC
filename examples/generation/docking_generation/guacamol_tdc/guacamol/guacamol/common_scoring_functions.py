@@ -1,17 +1,5 @@
 from typing import Callable, List
 
-from rdkit import Chem
-from rdkit.DataStructs.cDataStructs import TanimotoSimilarity
-
-from guacamol.utils.descriptors import (
-    mol_weight,
-    logP,
-    num_H_donors,
-    tpsa,
-    num_atoms,
-    AtomCounter,
-)
-from guacamol.utils.fingerprints import get_fingerprint
 from guacamol.score_modifier import (
     ScoreModifier,
     MinGaussianModifier,
@@ -23,9 +11,18 @@ from guacamol.scoring_function import (
     MoleculewiseScoringFunction,
 )
 from guacamol.utils.chemistry import smiles_to_rdkit_mol, parse_molecular_formula
+from guacamol.utils.descriptors import (
+    mol_weight,
+    logP,
+    num_H_donors,
+    tpsa,
+    num_atoms,
+    AtomCounter,
+)
+from guacamol.utils.fingerprints import get_fingerprint
 from guacamol.utils.math import arithmetic_mean, geometric_mean
-
-import numpy as np
+from rdkit import Chem
+from rdkit.DataStructs.cDataStructs import TanimotoSimilarity
 
 # class TDCScoring(ScoringFunctionBasedOnRdkitMol):
 

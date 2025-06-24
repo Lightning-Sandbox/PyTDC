@@ -1,7 +1,7 @@
-import torch
-import torch.nn as nn
 from abc import ABC, abstractmethod
 
+import torch
+import torch.nn as nn
 from MARS.common.nn import GraphEncoder, MLP
 
 

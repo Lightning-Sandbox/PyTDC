@@ -1,6 +1,7 @@
-import os
 import csv
+import os
 import pickle
+
 from rdkit import Chem
 
 

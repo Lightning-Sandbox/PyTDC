@@ -2,20 +2,18 @@ import argparse
 import json
 import logging
 import os
-from typing import List, Optional
+from typing import List
 
 import joblib
 import numpy as np
-from guacamol.scoring_function import MoleculewiseScoringFunction
-from joblib import delayed
-from rdkit import Chem, rdBase
-
-from guacamol.assess_distribution_learning import assess_distribution_learning
-from guacamol.distribution_matching_generator import DistributionMatchingGenerator
-from guacamol.utils.helpers import setup_default_logger
-
 from graph_mcts.goal_directed_generation import find_molecule, State, Node
 from graph_mcts.stats import Stats, get_stats_from_pickle, get_stats_from_smiles
+from guacamol.assess_distribution_learning import assess_distribution_learning
+from guacamol.distribution_matching_generator import DistributionMatchingGenerator
+from guacamol.scoring_function import MoleculewiseScoringFunction
+from guacamol.utils.helpers import setup_default_logger
+from joblib import delayed
+from rdkit import Chem, rdBase
 
 rdBase.DisableLog("rdApp.error")
 

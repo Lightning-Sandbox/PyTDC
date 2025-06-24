@@ -1,10 +1,9 @@
 import dgl
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
+from MARS.common.nn import GraphEncoder, MLP
 from dgl.nn.pytorch.glob import Set2Set
 
-from MARS.common.nn import GraphEncoder, MLP
 from .editor import Editor
 
 

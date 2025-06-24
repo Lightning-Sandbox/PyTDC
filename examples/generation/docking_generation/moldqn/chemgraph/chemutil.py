@@ -1,7 +1,5 @@
-import rdkit
 from rdkit import Chem, DataStructs
 from rdkit.Chem import AllChem
-from rdkit.Chem import Draw
 
 
 ## similarity of two SMILES

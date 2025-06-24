@@ -1,5 +1,4 @@
 import nltk
-
 import numpy as np
 
 from . import smiles_grammar

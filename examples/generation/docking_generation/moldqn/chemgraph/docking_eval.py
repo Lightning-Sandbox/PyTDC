@@ -4,19 +4,12 @@ sys.path.append("..")
 import os
 import json
 import numpy as np
-import pandas as pd
 from tqdm import tqdm
 import functools
-import matplotlib.pyplot as plt
 import tensorflow as tf
 
 from dqn import molecules
 from dqn import deep_q_networks
-from dqn.py.SA_Score import sascorer
-from chemutil import similarity
-
-from rdkit import Chem, DataStructs
-from rdkit.Chem import AllChem, Draw, Descriptors, QED
 
 from tdc import Oracle
 

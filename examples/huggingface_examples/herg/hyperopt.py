@@ -1,17 +1,14 @@
-import pandas as pd
+# ML model pacakage
+from DeepPurpose import utils as dp_utils, CompoundPred
+from ray import air
+# hyperparams package
+from ray import tune
+from ray.air.callbacks.mlflow import MLflowLoggerCallback
+from ray.tune.search.ax import AxSearch
 from sklearn.metrics import average_precision_score
 
 # TDC package
 from tdc.single_pred import Tox
-
-# ML model pacakage
-from DeepPurpose import utils as dp_utils, CompoundPred
-
-# hyperparams package
-from ray import tune
-from ray.tune.search.ax import AxSearch
-from ray import air
-from ray.air.callbacks.mlflow import MLflowLoggerCallback
 
 
 def prepare_data(drug_encoding):

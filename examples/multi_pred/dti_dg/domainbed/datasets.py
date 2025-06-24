@@ -1,11 +1,8 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
 # Adapted by TDC.
 
-import os
-import torch
 import numpy as np
 import pandas as pd
-import pickle
 
 
 def get_dataset_class(dataset_name):

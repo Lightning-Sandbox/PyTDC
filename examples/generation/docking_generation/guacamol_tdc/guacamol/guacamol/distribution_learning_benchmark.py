@@ -2,8 +2,9 @@ import logging
 import time
 from abc import abstractmethod
 from typing import Dict, Any, Iterable, List
-import numpy as np
 
+import numpy as np
+from guacamol.distribution_matching_generator import DistributionMatchingGenerator
 from guacamol.utils.chemistry import (
     canonicalize_list,
     is_valid,
@@ -12,7 +13,6 @@ from guacamol.utils.chemistry import (
     discrete_kldiv,
     calculate_internal_pairwise_similarities,
 )
-from guacamol.distribution_matching_generator import DistributionMatchingGenerator
 from guacamol.utils.data import get_random_subset
 from guacamol.utils.sampling_helpers import (
     sample_valid_molecules,

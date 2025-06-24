@@ -5,24 +5,23 @@ Some code adapted from https://github.com/yejinjkim/synergy-transfer
 
 """
 
+import argparse
 import copy
-import tdc
-from model_classes import *
+import pickle
+import time
 
-import torch
 import numpy as np
 import pandas as pd
-import time
-import pickle
-import argparse
-import rdkit
+import torch
+import torch.nn as nn
+import torch.optim as optim
 from rdkit import Chem
 from rdkit.Chem import MACCSkeys
-
-import torch.nn as nn
 from torch.autograd import Variable
-import torch.optim as optim
 from torch.utils.data import DataLoader
+
+import tdc
+from model_classes import *
 
 
 def arg_parse():

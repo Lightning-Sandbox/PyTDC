@@ -1,15 +1,13 @@
 import os
-import sys
-
-import unittest
 import shutil
+import unittest
 
 from pandas import DataFrame
-from tdc.resource import cellxgene_census
 
+from tdc.resource import PrimeKG
+from tdc.resource import cellxgene_census
 from tdc.resource.pharmone import PharmoneMap
 from tdc.resource.pinnacle import PINNACLE
-from tdc.resource import PrimeKG
 
 
 class TestResources(unittest.TestCase):

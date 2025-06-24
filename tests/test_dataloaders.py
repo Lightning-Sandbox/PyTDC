@@ -4,19 +4,20 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-
-import unittest
 import shutil
-from tdc.single_pred import TestSinglePred
-from tdc.multi_pred import TestMultiPred
-from tdc.multi_pred.single_cell import CellXGene
-from tdc.single_pred.mpc import MPC
+import unittest
+
 import pandas as pd
-from tdc.resource.dataloader import DataLoader
-from tdc.generation import MolGen
-from tdc.multi_pred.perturboutcome import PerturbOutcome
 from pandas import DataFrame
+
+from tdc.generation import MolGen
 from tdc.multi_pred import ProteinPeptide
+from tdc.multi_pred import TestMultiPred
+from tdc.multi_pred.perturboutcome import PerturbOutcome
+from tdc.multi_pred.single_cell import CellXGene
+from tdc.resource.dataloader import DataLoader
+from tdc.single_pred import TestSinglePred
+from tdc.single_pred.mpc import MPC
 
 # TODO: add verification for the generation other than simple integration
 

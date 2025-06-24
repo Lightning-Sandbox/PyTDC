@@ -11,14 +11,14 @@ from typing import List, Optional
 import joblib
 import nltk
 import numpy as np
-from joblib import delayed
-from rdkit import rdBase
-
 from guacamol.assess_goal_directed_generation import assess_goal_directed_generation
 from guacamol.goal_directed_generator import GoalDirectedGenerator
 from guacamol.scoring_function import ScoringFunction
 from guacamol.utils.chemistry import canonicalize
 from guacamol.utils.helpers import setup_default_logger
+from joblib import delayed
+from rdkit import rdBase
+
 from . import cfg_util, smiles_grammar
 
 rdBase.DisableLog("rdApp.error")

@@ -1,13 +1,12 @@
-from abc import abstractmethod
 import logging
+from abc import abstractmethod
 from typing import List, Optional
 
 import numpy as np
-from rdkit import Chem
-
-from guacamol.utils.chemistry import smiles_to_rdkit_mol
 from guacamol.score_modifier import ScoreModifier, LinearModifier
+from guacamol.utils.chemistry import smiles_to_rdkit_mol
 from guacamol.utils.math import geometric_mean
+from rdkit import Chem
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())

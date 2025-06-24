@@ -4,12 +4,11 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-
-import unittest
 import shutil
+import unittest
 
-from tdc.multi_pred import DrugSyn
 from tdc.multi_pred import DTI
+from tdc.multi_pred import DrugSyn
 ## requires RDKit
 from tdc.single_pred import ADME
 

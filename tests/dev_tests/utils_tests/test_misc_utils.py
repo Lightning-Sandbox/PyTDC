@@ -4,17 +4,16 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-
-import unittest
 import shutil
+import unittest
 
+from tdc.multi_pred import DDI
+from tdc.multi_pred import DTI
 from tdc.multi_pred import PPI
 from tdc.single_pred import ADME
-from tdc.multi_pred import DDI
 from tdc.single_pred import HTS
-from tdc.utils import get_label_map
 from tdc.utils import cid2smiles
-from tdc.multi_pred import DTI
+from tdc.utils import get_label_map
 from tdc.utils import uniprot2seq
 
 

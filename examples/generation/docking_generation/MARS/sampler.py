@@ -1,19 +1,18 @@
-import os
-import math
-import torch
-import random
 import logging as log
-from tqdm import tqdm
-from rdkit.Chem import AllChem
+import os
+import random
+
+import torch
 from rdkit import Chem, DataStructs
+from rdkit.Chem import AllChem
 from torch.utils import data
 from torch.utils.tensorboard import SummaryWriter
 
-from .common.train import train
 from .common.chem import mol_to_dgl
+from .common.train import train
 from .common.utils import print_mols
-from .datasets.utils import load_mols
 from .datasets.datasets import ImitationDataset, GraphClassificationDataset
+from .datasets.utils import load_mols
 
 
 class Sampler:

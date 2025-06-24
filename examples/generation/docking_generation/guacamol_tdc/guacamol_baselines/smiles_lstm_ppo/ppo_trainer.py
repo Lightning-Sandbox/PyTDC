@@ -1,20 +1,19 @@
+import copy
+import logging
+from functools import total_ordering
 from typing import List
 
 import numpy as np
-import logging
 import torch
-import copy
 import torch.optim as optim
-from functools import total_ordering
-from torch.utils.data.sampler import BatchSampler, SubsetRandomSampler
-
-from smiles_lstm_hc.action_sampler import ActionSampler
-from smiles_lstm_ppo.action_replay import ActionReplay
-from smiles_lstm_ppo.rnn_model import SmilesRnnActorCritic
 from guacamol.scoring_function import ScoringFunction
-from smiles_lstm_ppo.molecule_batch import MoleculeBatch
-from smiles_lstm_ppo.running_reward import RunningReward
+from smiles_lstm_hc.action_sampler import ActionSampler
 from smiles_lstm_hc.smiles_char_dict import SmilesCharDictionary
+from smiles_lstm_ppo.action_replay import ActionReplay
+from smiles_lstm_ppo.molecule_batch import MoleculeBatch
+from smiles_lstm_ppo.rnn_model import SmilesRnnActorCritic
+from smiles_lstm_ppo.running_reward import RunningReward
+from torch.utils.data.sampler import BatchSampler, SubsetRandomSampler
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())

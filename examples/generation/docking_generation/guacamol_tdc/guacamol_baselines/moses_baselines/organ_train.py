@@ -1,13 +1,12 @@
 # Adapted from https://github.com/molecularsets/moses/blob/master/scripts/organ/train.py
 
-import torch
-import rdkit
+from multiprocessing import Pool
 
+import rdkit
+import torch
 from moses.organ import ORGAN, ORGANTrainer, get_parser as organ_parser
 from moses.script_utils import add_train_args, set_seed, MetricsReward
 from moses.utils import CharVocab
-from multiprocessing import Pool
-
 from moses_baselines.common import read_smiles
 
 lg = rdkit.RDLogger.logger()

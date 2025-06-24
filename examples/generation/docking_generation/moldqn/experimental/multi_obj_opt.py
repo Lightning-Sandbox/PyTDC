@@ -31,28 +31,24 @@ import os
 import random
 import time
 
+import numpy as np
+import tensorflow.compat.v1 as tf
 from absl import app
 from absl import flags
 from absl import logging
 from baselines.common import schedules
 from baselines.deepq import replay_buffer
-
-import numpy as np
-
+from mol_dqn.chemgraph.mcts import deep_q_networks
+from mol_dqn.chemgraph.mcts import molecules as molecules_mdp
+from mol_dqn.chemgraph.py import molecules
+from mol_dqn.chemgraph.tensorflow import core
 from rdkit import Chem
 from rdkit import DataStructs
 from rdkit.Chem import AllChem
 from rdkit.Chem import Descriptors
 from rdkit.Chem import QED
-
 from six.moves import range
-import tensorflow.compat.v1 as tf
-
 from tensorflow.compat.v1 import gfile
-from mol_dqn.chemgraph.mcts import deep_q_networks
-from mol_dqn.chemgraph.mcts import molecules as molecules_mdp
-from mol_dqn.chemgraph.py import molecules
-from mol_dqn.chemgraph.tensorflow import core
 
 flags.DEFINE_string(
     "model_dir",

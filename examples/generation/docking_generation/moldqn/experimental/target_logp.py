@@ -23,17 +23,18 @@ from __future__ import print_function
 import functools
 import json
 import os
+
+import networkx as nx
 from absl import app
 from absl import flags
-import networkx as nx
-from rdkit import Chem
-from rdkit.Chem import Descriptors
-from rdkit.Contrib import SA_Score
-from tensorflow.compat.v1 import gfile
 from mol_dqn.chemgraph.mcts import deep_q_networks
 from mol_dqn.chemgraph.mcts import molecules as molecules_mdp
 from mol_dqn.chemgraph.mcts import run_dqn
 from mol_dqn.chemgraph.tensorflow import core
+from rdkit import Chem
+from rdkit.Chem import Descriptors
+from rdkit.Contrib import SA_Score
+from tensorflow.compat.v1 import gfile
 
 flags.DEFINE_float("target_logp", 5.25, "The target logP value")
 flags.DEFINE_float("gamma", 0.999, "discount")

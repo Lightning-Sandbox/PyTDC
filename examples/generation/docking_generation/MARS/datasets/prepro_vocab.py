@@ -1,8 +1,9 @@
+import argparse
 import os
 import pickle
-import argparse
-from tqdm import tqdm
+
 from rdkit import Chem, RDLogger
+from tqdm import tqdm
 
 from .utils import load_mols
 from ..common.chem import break_bond, Arm, Skeleton

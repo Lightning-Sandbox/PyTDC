@@ -1,7 +1,7 @@
-import os
 import pickle
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 file_predix = "docking_smilesvaluelst_"
 output_file_prefix = "moldqn_"

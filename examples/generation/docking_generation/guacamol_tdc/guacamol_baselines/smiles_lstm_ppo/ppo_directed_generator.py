@@ -1,13 +1,13 @@
 from pathlib import Path
 from typing import List, Optional
-import torch
 
-from smiles_lstm_ppo.ppo_generator import PPOMoleculeGenerator
-from smiles_lstm_ppo.rnn_model import SmilesRnnActorCritic
-from smiles_lstm_hc.rnn_utils import load_rnn_model
+import torch
+from guacamol.goal_directed_generator import GoalDirectedGenerator
 from guacamol.scoring_function import ScoringFunction
 from guacamol.utils.chemistry import canonicalize_list
-from guacamol.goal_directed_generator import GoalDirectedGenerator
+from smiles_lstm_hc.rnn_utils import load_rnn_model
+from smiles_lstm_ppo.ppo_generator import PPOMoleculeGenerator
+from smiles_lstm_ppo.rnn_model import SmilesRnnActorCritic
 
 
 class PPODirectedGenerator(GoalDirectedGenerator):

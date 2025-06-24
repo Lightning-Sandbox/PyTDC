@@ -30,11 +30,11 @@ import os
 
 from absl import app
 from absl import flags
-
 from rdkit import Chem
 from rdkit import DataStructs
 from rdkit.Chem import AllChem
 from rdkit.Chem import QED
+
 from dqn import deep_q_networks
 from dqn import molecules as molecules_mdp
 from dqn import run_dqn

@@ -1,5 +1,3 @@
-from rdkit import Chem
-
 from guacamol.common_scoring_functions import (
     TanimotoScoringFunction,
     RdkitScoringFunction,
@@ -38,6 +36,7 @@ from guacamol.utils.descriptors import (
     AtomCounter,
     num_rings,
 )
+from rdkit import Chem
 
 
 def isomers_c11h24(mean_function="geometric") -> GoalDirectedBenchmark:

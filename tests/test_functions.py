@@ -4,10 +4,9 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-import sys
-
-import unittest
 import shutil
+import unittest
+
 from tdc import Evaluator
 from tdc.single_pred import TestSinglePred
 

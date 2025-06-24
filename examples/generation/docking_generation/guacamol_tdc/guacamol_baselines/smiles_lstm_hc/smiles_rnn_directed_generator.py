@@ -3,7 +3,6 @@ from typing import List, Optional
 
 import joblib
 import torch
-
 from guacamol.goal_directed_generator import GoalDirectedGenerator
 from guacamol.scoring_function import ScoringFunction
 from guacamol.utils.chemistry import canonicalize_list, canonicalize

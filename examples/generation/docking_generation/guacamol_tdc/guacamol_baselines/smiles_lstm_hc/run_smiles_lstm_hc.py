@@ -3,13 +3,10 @@ from typing import List, Optional
 
 import joblib
 import torch
-from random import random
 from guacamol.goal_directed_generator import GoalDirectedGenerator
-
 # from guacamol.scoring_function import ScoringFunction
 from guacamol.utils.chemistry import canonicalize_list, canonicalize
 from joblib import delayed
-
 from smiles_lstm_hc.rnn_generator import SmilesRnnMoleculeGenerator
 from smiles_lstm_hc.rnn_utils import load_rnn_model
 

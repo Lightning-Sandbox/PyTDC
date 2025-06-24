@@ -1,12 +1,11 @@
-import dgl
-import math
 import copy
-import rdkit
-import torch
+from collections import defaultdict
+
+import dgl
 import numpy as np
+import torch
 from rdkit import Chem
 from rdkit.Chem import AllChem, DataStructs
-from collections import defaultdict
 
 
 ### validity

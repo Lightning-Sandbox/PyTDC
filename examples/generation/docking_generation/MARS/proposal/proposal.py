@@ -1,19 +1,17 @@
-import os
-import dgl
-import math
-import torch
-import rdkit
 import random
-import pickle
+from abc import ABC, abstractmethod
+
+import dgl
+import dgl
+import torch
 import torch.nn.functional as F
 from rdkit import Chem
-from abc import ABC, abstractmethod
 from torch.utils.data import DataLoader
 
-from ..datasets.utils import load_mols, load_vocab
-from ..datasets.datasets import GraphDataset, ImitationDataset
-from ..common.utils import sample_idx
 from ..common.chem import mol_to_dgl, check_validity, Skeleton, break_bond, combine
+from ..common.utils import sample_idx
+from ..datasets.datasets import GraphDataset, ImitationDataset
+from ..datasets.utils import load_vocab
 
 
 class Proposal(ABC):
