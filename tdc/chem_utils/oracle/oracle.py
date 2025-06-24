@@ -43,8 +43,6 @@ mean2func = {
     "geometric": gmean,
     "arithmetic": np.mean,
 }
-SKLEARN_VERSION = version.parse(
-    pkg_resources.get_distribution("scikit-learn").version)
 
 
 def smiles_to_rdkit_mol(smiles):
@@ -465,14 +463,7 @@ def load_pickled_model(name: str):
 
 # clf_model = None
 def load_drd2_model():
-    name = "oracle/drd2.pkl"
-
-    if SKLEARN_VERSION >= version.parse("0.24.0"):
-        name = "oracle/drd2_current.pkl"
-    else:
-        name = "oracle/drd2.pkl"
-
-    return load_pickled_model(name)
+    return load_pickled_model("oracle/drd2_current.pkl")
 
 
 def fingerprints_from_mol(mol):
@@ -698,11 +689,7 @@ class jnk3:
     """
 
     def __init__(self):
-
-        jnk3_model_path = "oracle/jnk3.pkl"
-        if SKLEARN_VERSION >= version.parse("0.24.0"):
-            jnk3_model_path = "oracle/jnk3_current.pkl"
-        self.jnk3_model = load_pickled_model(jnk3_model_path)
+        self.jnk3_model = load_pickled_model("oracle/jnk3_current.pkl")
 
     def __call__(self, smiles):
         molecule = smiles_to_rdkit_mol(smiles)

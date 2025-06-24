@@ -17,9 +17,6 @@ from .metadata import (
     docking_target_info,
 )
 
-SKLEARN_VERSION = version.parse(
-    pkg_resources.get_distribution("scikit-learn").version)
-
 
 def _normalize_docking_score(raw_score):
     return 1 / (1 + np.exp((raw_score + 7.5)))
@@ -47,8 +44,7 @@ class Oracle:
             name = "3pbl_docking_normalize"
         if name in download_oracle_names:
             if name in ["jnk3", "gsk3b", "drd2"]:
-                if SKLEARN_VERSION >= version.parse("0.24.0"):
-                    name += "_current"
+                name += "_current"
             ### download
             ##### e.g., jnk, gsk, drd2, ...
             self.name = oracle_load(name)
