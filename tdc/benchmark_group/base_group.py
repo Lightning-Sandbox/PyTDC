@@ -10,17 +10,18 @@ import pandas as pd
 
 warnings.filterwarnings("ignore")
 
+from ..evaluator import Evaluator  # noqa - needed for eval
+from ..metadata import (
+    bm_metric_names,
+    benchmark_names,
+    bm_split_names,
+)
 from ..utils import bm_group_load, print_sys, fuzzy_search
 from ..utils import (
     create_fold,
     create_combination_split,
     create_scaffold_split,
     create_group_split,
-)
-from ..metadata import (
-    bm_metric_names,
-    benchmark_names,
-    bm_split_names,
 )
 
 
