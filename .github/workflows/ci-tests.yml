@@ -31,10 +31,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
 
-      - name: Install git-lfs
-        run: |
-          sudo apt-get install git-lfs
-          git lfs install
+      #- name: Install git-lfs
+      #  run: |
+      #    sudo apt-get install git-lfs
+      #    git lfs install
 
       - name: Install package & dependencies
         run: |
