@@ -19,6 +19,9 @@ jobs:
         matrix:
             os: ["ubuntu-22.04"]  # todo: add `, "macOS-14", "windows-2022"`
             python-version: ["3.9", "3.10", "3.11"]
+            install-deps: ["new"]
+            include:
+              - { os: "ubuntu-22.04", python-version: "3.9", install-deps: "old" }
     defaults:
       run:
         shell: bash
@@ -31,6 +34,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
 
+      - name: add old dependencies
+        if: ${{ matrix.install-deps == 'old' }}
+        run: echo "OLD_DEPENDENCIES=-r .github/requires_old.txt" >> $GITHUB_ENV
+
       #- name: Install git-lfs
       #  run: |
       #    sudo apt-get install git-lfs
@@ -38,7 +45,7 @@ jobs:
 
       - name: Install package & dependencies
         run: |
-          pip install . -U -q -r requires_test.txt
+          pip install . -U -q -r requires_test.txt $OLD_DEPENDENCIES
           pip list
 
       - name: Run tests
