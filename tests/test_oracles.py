@@ -8,11 +8,15 @@ import sys
 
 import unittest
 
+import pytest
+
 from tdc import Oracle
 
 # TODO: add verification for the generation other than simple integration
 
 
+@pytest.mark.xfail(raises=ImportError,
+                   reason="Oracle supports only old SKLearn version")
 class TestOracle(unittest.TestCase):
 
     def setUp(self):

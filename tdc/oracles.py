@@ -37,6 +37,11 @@ class Oracle:
 
     def __init__(self, name, target_smiles=None, num_max_call=None, **kwargs):
         """Summary"""
+
+        if SKLEARN_VERSION >= version.parse("1.3.0"):
+            raise ImportError(
+                "For loading the Oracle, please install sklearn<1.3.0, "
+                "e.g., pip install 'scikit-learn<1.3.0'")
         self.target_smiles = target_smiles
         self.kwargs = kwargs
         self.normalize = lambda x: x
@@ -47,8 +52,7 @@ class Oracle:
             name = "3pbl_docking_normalize"
         if name in download_oracle_names:
             if name in ["jnk3", "gsk3b", "drd2"]:
-                if SKLEARN_VERSION >= version.parse("0.24.0"):
-                    name += "_current"
+                name += "_current"
             ### download
             ##### e.g., jnk, gsk, drd2, ...
             self.name = oracle_load(name)

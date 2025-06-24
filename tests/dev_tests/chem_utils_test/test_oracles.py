@@ -8,10 +8,14 @@ import os
 import unittest
 import shutil
 
+import pytest
+
 from tdc import Evaluator
 from tdc import Oracle
 
 
+@pytest.mark.xfail(raises=ImportError,
+                   reason="Oracle supports only old SKLearn version")
 class TestOracle(unittest.TestCase):
 
     def setUp(self):
