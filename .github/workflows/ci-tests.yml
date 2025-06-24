@@ -40,4 +40,4 @@ jobs:
         run: pip install . -U -r requires_test.txt
 
       - name: Run tests
-        run: python run_tests.py
+        run: pytest tests/ -v --disable-warnings --color=yes
