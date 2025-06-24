@@ -1,8 +1,9 @@
 """A python module to build, handle, explore, and manipulate knowledge graphs.
 """
 
-import pandas as pd
 from copy import copy
+
+import pandas as pd
 
 kg_columns = [
     'relation', 'display_relation', 'x_id', 'x_type', 'x_name', 'x_source',

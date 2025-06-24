@@ -1,18 +1,16 @@
 # modifed from: https://github.com/wengong-jin/hgraph2graph/blob/master/props/properties.py
 
 import math
-import rdkit
-from rdkit import Chem, DataStructs
-from rdkit.Chem import AllChem
-from rdkit.Chem import Descriptors
-import rdkit.Chem.QED as QED
+
 import networkx as nx
-
-from ...common.chem import standardize_smiles
-from . import sa_scorer, kinase_scorer  # , drd2_scorer, chemprop_scorer
-
 import pyscreener
+import rdkit.Chem.QED as QED
+from rdkit import Chem
+from rdkit.Chem import Descriptors
+
 from tdc import Oracle
+from . import sa_scorer, kinase_scorer  # , drd2_scorer, chemprop_scorer
+from ...common.chem import standardize_smiles
 
 # oracle2 = Oracle(name = 'Docking_Score', software='vina', pyscreener_path = './', pdbids=['5WIU'], center=(-18.2, 14.4, -16.1), size=(15.4, 13.9, 14.5), buffer=10, path='./', num_worker=1, ncpu=4)
 # oracle2 = Oracle(name = 'Docking_Score', software='vina', pyscreener_path = './', pdbids=['DRD3'], center=(-18.2, 14.4, -16.1), size=(15.4, 13.9, 14.5), buffer=10, path='./', num_worker=1, ncpu=4)
@@ -31,8 +29,6 @@ oracle2 = Oracle(
     num_worker=3,
     ncpu=8,
 )
-
-import random
 
 
 ### get scores

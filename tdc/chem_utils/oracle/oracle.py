@@ -2,15 +2,15 @@
 # Author: TDC Team
 # License: MIT
 
+import math
+import os
 import pickle
-import numpy as np
-import os.path as op
+import time
 from abc import abstractmethod
 from functools import partial
 from typing import List
-import time, os, math, re
-from packaging import version
-import pkg_resources
+
+import numpy as np
 
 try:
     import rdkit
@@ -339,8 +339,6 @@ _fscores = None
 
 
 def readFragmentScores(name="fpscores"):
-    import gzip
-
     global _fscores
     # generate the full path filename:
     # if name == "fpscores":
@@ -519,7 +517,7 @@ def cyp3a4_veith(smiles):
         global cyp3a4_veith_model
         cyp3a4_veith_model = load_cyp3a4_veith()
 
-    import warnings, os
+    import warnings
 
     warnings.filterwarnings("ignore")
 

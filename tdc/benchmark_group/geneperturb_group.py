@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Author: TDC Team
 # License: MIT
-import numpy as np
 import os
 
+import numpy as np
+
 from .counterfactual_group import CounterfactualGroup
-from ..dataset_configs.config_map import scperturb_datasets, scperturb_gene_datasets
 
 
 class GenePerturbGroup(CounterfactualGroup):

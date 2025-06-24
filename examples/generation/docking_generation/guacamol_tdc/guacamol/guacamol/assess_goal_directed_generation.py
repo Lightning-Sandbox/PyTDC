@@ -5,12 +5,12 @@ from collections import OrderedDict
 from typing import List, Any, Dict
 
 import guacamol
+from guacamol.benchmark_suites import goal_directed_benchmark_suite
 from guacamol.goal_directed_benchmark import (
     GoalDirectedBenchmark,
     GoalDirectedBenchmarkResult,
 )
 from guacamol.goal_directed_generator import GoalDirectedGenerator
-from guacamol.benchmark_suites import goal_directed_benchmark_suite
 from guacamol.utils.data import get_time_string
 
 logger = logging.getLogger(__name__)

@@ -3,14 +3,13 @@ import re
 from typing import Optional, List, Iterable, Collection, Tuple
 
 import numpy as np
+from guacamol.utils.data import remove_duplicates
 from rdkit import Chem
 from rdkit import RDLogger, DataStructs
 from rdkit.Chem import AllChem
 from rdkit.ML.Descriptors import MoleculeDescriptors
 from scipy import histogram
 from scipy.stats import entropy, gaussian_kde
-
-from guacamol.utils.data import remove_duplicates
 
 # Mute RDKit logger
 RDLogger.logger().setLevel(RDLogger.CRITICAL)

@@ -10,17 +10,15 @@ from typing import List, Optional
 
 import joblib
 import numpy as np
-from joblib import delayed
-from rdkit import Chem, rdBase
-from rdkit.Chem import AllChem
-
+from graph_mcts.stats import Stats, get_stats_from_pickle, get_stats_from_smiles
 from guacamol.assess_goal_directed_generation import assess_goal_directed_generation
 from guacamol.goal_directed_generator import GoalDirectedGenerator
 from guacamol.scoring_function import ScoringFunction
 from guacamol.utils.chemistry import canonicalize
 from guacamol.utils.helpers import setup_default_logger
-
-from graph_mcts.stats import Stats, get_stats_from_pickle, get_stats_from_smiles
+from joblib import delayed
+from rdkit import Chem, rdBase
+from rdkit.Chem import AllChem
 
 rdBase.DisableLog("rdApp.error")
 

@@ -25,7 +25,6 @@ class SCDTIGroup(BenchmarkGroup):
         Calculate recall@k and precision@k for binary classification.
         """
         import numpy as np
-        import pandas as pd
         from sklearn.metrics import accuracy_score, average_precision_score
         assert preds.shape[0] == y.shape[0]
         assert k > 0

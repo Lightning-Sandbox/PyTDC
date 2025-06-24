@@ -4,7 +4,6 @@ import os
 from pathlib import Path
 
 import torch
-
 from guacamol.assess_distribution_learning import assess_distribution_learning
 from guacamol.utils.helpers import setup_default_logger
 

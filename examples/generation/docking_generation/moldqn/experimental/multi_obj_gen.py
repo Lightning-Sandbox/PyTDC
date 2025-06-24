@@ -28,16 +28,17 @@ from __future__ import print_function
 import functools
 import json
 import os
+
 from absl import app
 from absl import flags
-from rdkit import Chem
-from rdkit.Chem import QED
-from rdkit.Contrib import SA_Score
-from tensorflow.compat.v1 import gfile
 from mol_dqn.chemgraph.mcts import deep_q_networks
 from mol_dqn.chemgraph.mcts import molecules as molecules_mdp
 from mol_dqn.chemgraph.mcts import run_dqn
 from mol_dqn.chemgraph.tensorflow import core
+from rdkit import Chem
+from rdkit.Chem import QED
+from rdkit.Contrib import SA_Score
+from tensorflow.compat.v1 import gfile
 
 flags.DEFINE_float("target_sas", 1, "The target SAS of the molecule.")
 flags.DEFINE_float("target_qed", 0.5, "The target QED of the molecule.")

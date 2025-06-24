@@ -5,12 +5,12 @@ from collections import OrderedDict
 from typing import List, Dict, Any
 
 import guacamol
+from guacamol.benchmark_suites import distribution_learning_benchmark_suite
 from guacamol.distribution_learning_benchmark import (
     DistributionLearningBenchmark,
     DistributionLearningBenchmarkResult,
 )
 from guacamol.distribution_matching_generator import DistributionMatchingGenerator
-from guacamol.benchmark_suites import distribution_learning_benchmark_suite
 from guacamol.utils.data import get_time_string
 
 logger = logging.getLogger(__name__)

@@ -1,10 +1,10 @@
+import argparse
 import os
 import sys
+
 import rdkit
-import torch
-import argparse
-from rdkit.Chem import AllChem
 from rdkit import Chem, DataStructs
+from rdkit.Chem import AllChem
 
 from .datasets.utils import load_mols
 

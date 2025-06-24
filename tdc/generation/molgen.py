@@ -7,7 +7,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from . import generation_dataset
-from ..metadata import dataset_names
 
 
 class MolGen(generation_dataset.DataLoader):

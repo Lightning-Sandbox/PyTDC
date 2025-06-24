@@ -7,7 +7,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from . import bi_generation_dataset
-from ..metadata import dataset_names
 
 
 class LigandMolGen(bi_generation_dataset.DataLoader):

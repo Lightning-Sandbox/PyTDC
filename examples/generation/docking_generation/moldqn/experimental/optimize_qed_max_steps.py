@@ -26,15 +26,13 @@ import os
 
 from absl import app
 from absl import flags
-
-from rdkit import Chem
-
-from rdkit.Chem import QED
-from tensorflow.compat.v1 import gfile
 from mol_dqn.chemgraph.mcts import deep_q_networks
 from mol_dqn.chemgraph.mcts import molecules as molecules_mdp
 from mol_dqn.chemgraph.mcts import run_dqn
 from mol_dqn.chemgraph.tensorflow import core
+from rdkit import Chem
+from rdkit.Chem import QED
+from tensorflow.compat.v1 import gfile
 
 flags.DEFINE_float("gamma", 0.999, "discount")
 flags.DEFINE_integer("max_steps_per_episode", 20, "max_steps")

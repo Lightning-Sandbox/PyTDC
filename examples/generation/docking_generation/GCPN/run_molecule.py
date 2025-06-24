@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-from mpi4py import MPI
-from baselines.common import set_global_seeds
-from baselines import logger
-from tensorboardX import SummaryWriter
 import os
+
 import tensorflow as tf
+from baselines import logger
+from baselines.common import set_global_seeds
+from mpi4py import MPI
+from tensorboardX import SummaryWriter
 
 oracle_call = 0
 # global oracle_call

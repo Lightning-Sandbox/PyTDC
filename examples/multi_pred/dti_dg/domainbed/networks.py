@@ -5,8 +5,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-import copy
-
 
 class Identity(nn.Module):
     """An identity layer"""

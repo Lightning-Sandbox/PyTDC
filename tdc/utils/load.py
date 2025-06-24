@@ -1,11 +1,14 @@
 """wrapper for download various dataset
 """
-import requests
-from zipfile import ZipFile
-import os, sys
-import pandas as pd
-import numpy as np
+import os
 import pickle
+import sys
+from collections import defaultdict
+from zipfile import ZipFile
+
+import numpy as np
+import pandas as pd
+import requests
 from pandas.errors import EmptyDataError
 from tqdm import tqdm
 
@@ -13,32 +16,17 @@ from ..metadata import (
     name2type,
     name2id,
     name2idlist,
-    dataset_list,
-    dataset_names,
     benchmark_names,
     benchmark2id,
     benchmark2type,
 )
 from ..metadata import (
-    property_names,
-    paired_dataset_names,
-    single_molecule_dataset_names,
-)
-from ..metadata import (
-    retrosyn_dataset_names,
-    forwardsyn_dataset_names,
-    molgenpaired_dataset_names,
-    generation_datasets,
-)
-from ..metadata import (
     oracle2id,
     receptor2id,
-    download_oracle_names,
     trivial_oracle_names,
     oracle_names,
     oracle2type,
 )
-from collections import defaultdict
 
 receptor_names = list(receptor2id.keys())
 sys.path.append("../")
@@ -359,7 +347,6 @@ def pd_load(name, path):
 
 def load_json_from_txt_file(name, path):
     import json
-    import re
     name = download_wrapper(name, path, [name])
     file_path = os.path.join(path, name + ".txt")
     with open(file_path, 'r') as f:

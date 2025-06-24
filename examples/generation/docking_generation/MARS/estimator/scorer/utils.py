@@ -1,6 +1,5 @@
 import numpy as np
 from rdkit.Chem import AllChem
-from rdkit import DataStructs
 
 
 def fingerprints_from_mol(mol):

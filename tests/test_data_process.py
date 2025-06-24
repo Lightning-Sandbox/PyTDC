@@ -4,9 +4,9 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-
-import unittest
 import shutil
+import unittest
+
 import pandas as pd
 
 from tdc.feature_generators.data_feature_generator import DataFeatureGenerator

@@ -1,10 +1,11 @@
 import os
+
 import numpy as np
-from rdkit import Chem
-from chemprop.train import predict
 from chemprop.data import MoleculeDataset, MoleculeDataLoader
 from chemprop.data.utils import get_data, get_data_from_smiles
+from chemprop.train import predict
 from chemprop.utils import load_args, load_checkpoint, load_scalers
+from rdkit import Chem
 
 models = {}
 device = None

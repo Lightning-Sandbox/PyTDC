@@ -2,23 +2,18 @@
 # Author: TDC Team
 # License: MIT
 
-import pandas as pd
-import numpy as np
-import os, sys, json
+import os
 import warnings
+
+import numpy as np
+import pandas as pd
 
 warnings.filterwarnings("ignore")
 
 from .base_group import BenchmarkGroup
-from ..utils import bm_group_load, print_sys, fuzzy_search
+from ..utils import print_sys, fuzzy_search
 from ..metadata import (
-    get_task2category,
-    bm_metric_names,
-    benchmark_names,
-    bm_split_names,
-    docking_target_info,
-)
-from ..evaluator import Evaluator
+    docking_target_info,)
 
 
 class docking_group(BenchmarkGroup):
@@ -63,7 +58,6 @@ class docking_group(BenchmarkGroup):
         self.num_workers = num_workers
         self.num_cpus = num_cpus
         self.num_max_call = num_max_call
-        from ..oracles import Oracle
 
     def __iter__(self):
         """iterate docking targets

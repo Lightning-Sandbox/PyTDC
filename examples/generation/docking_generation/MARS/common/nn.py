@@ -1,8 +1,6 @@
-import torch
+import dgl
 import torch.nn as nn
 import torch.nn.functional as F
-
-import dgl
 from dgl.nn.pytorch.conv import NNConv
 
 

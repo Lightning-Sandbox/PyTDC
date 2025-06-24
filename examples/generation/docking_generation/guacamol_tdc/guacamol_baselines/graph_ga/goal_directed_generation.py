@@ -4,12 +4,11 @@ import argparse
 import heapq
 import json
 import os
+import pickle
 import random
 from time import time
 from typing import List, Optional
 
-from tqdm import tqdm
-import pickle
 import joblib
 import numpy as np
 from guacamol.assess_goal_directed_generation import assess_goal_directed_generation
@@ -20,6 +19,7 @@ from guacamol.utils.helpers import setup_default_logger
 from joblib import delayed
 from rdkit import Chem
 from rdkit.Chem.rdchem import Mol
+from tqdm import tqdm
 
 from . import crossover as co, mutate as mu
 

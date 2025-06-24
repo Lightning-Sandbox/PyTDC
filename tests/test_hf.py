@@ -4,14 +4,15 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-
-import unittest
 import shutil
+import unittest
+
 import pytest
-from tdc.single_pred import Tox
-from tdc import tdc_hf_interface
 # from transformers import Pipeline
 from transformers import BertForMaskedLM as BertModel
+
+from tdc import tdc_hf_interface
+from tdc.single_pred import Tox
 
 # TODO: add verification for the generation other than simple integration
 

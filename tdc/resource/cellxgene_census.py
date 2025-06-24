@@ -1,8 +1,8 @@
 import cellxgene_census
 import gget
 import pandas as pd
-from scipy.sparse import csr_matrix
 import tiledbsoma
+from scipy.sparse import csr_matrix
 
 
 class CensusResource:

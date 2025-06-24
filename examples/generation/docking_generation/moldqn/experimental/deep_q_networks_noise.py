@@ -23,9 +23,9 @@ from __future__ import print_function
 import functools
 
 import numpy as np
+import tensorflow.compat.v1 as tf
 from six.moves import range
 from six.moves import zip
-import tensorflow.compat.v1 as tf
 from tensorflow.contrib import layers as contrib_layers
 
 

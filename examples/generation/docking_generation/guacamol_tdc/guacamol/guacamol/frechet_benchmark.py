@@ -7,7 +7,6 @@ from typing import List
 
 import fcd
 import numpy as np
-
 from guacamol.distribution_learning_benchmark import (
     DistributionLearningBenchmark,
     DistributionLearningBenchmarkResult,

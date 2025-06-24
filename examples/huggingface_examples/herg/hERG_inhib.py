@@ -6,11 +6,9 @@ get_ipython().system(" pip show PyTDC")
 RANDOM_SEED = 42
 
 import pandas as pd
-
-from tdc import utils as tdc_utils
-from tdc.single_pred import Tox
-
 from DeepPurpose import utils as dp_utils, CompoundPred
+
+from tdc.single_pred import Tox
 
 # ## Prepare Data
 
@@ -25,7 +23,6 @@ pd.Series(y).value_counts()
 
 import io
 from contextlib import redirect_stdout
-from functools import lru_cache
 
 import re
 

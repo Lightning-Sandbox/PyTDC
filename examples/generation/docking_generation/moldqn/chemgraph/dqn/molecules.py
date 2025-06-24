@@ -28,12 +28,11 @@ import collections
 import copy
 import itertools
 
+from dqn.py import molecules
 from rdkit import Chem
 from rdkit.Chem import Draw
 from six.moves import range
 from six.moves import zip
-
-from dqn.py import molecules
 
 
 class Result(collections.namedtuple("Result",

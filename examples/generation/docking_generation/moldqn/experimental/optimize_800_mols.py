@@ -24,24 +24,25 @@ import functools
 import json
 import os
 import random
+
+import networkx as nx
+import numpy as np
+import tensorflow.compat.v1 as tf
 from absl import app
 from absl import flags
 from absl import logging
 from baselines.common import schedules
 from baselines.deepq import replay_buffer
-import networkx as nx
-import numpy as np
+from mol_dqn.chemgraph.mcts import deep_q_networks
+from mol_dqn.chemgraph.mcts import molecules as molecules_mdp
+from mol_dqn.chemgraph.tensorflow import core
 from rdkit import Chem
 from rdkit import DataStructs
 from rdkit.Chem import AllChem
 from rdkit.Chem import Descriptors
 from rdkit.Contrib import SA_Score
 from six.moves import range
-import tensorflow.compat.v1 as tf
 from tensorflow.compat.v1 import gfile
-from mol_dqn.chemgraph.mcts import deep_q_networks
-from mol_dqn.chemgraph.mcts import molecules as molecules_mdp
-from mol_dqn.chemgraph.tensorflow import core
 
 flags.DEFINE_float("sim_delta", 0.0, "similarity_constraint")
 flags.DEFINE_integer("num_episodes", 50, "episodes.")

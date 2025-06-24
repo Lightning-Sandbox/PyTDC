@@ -3,8 +3,8 @@ Class encapsulating protein data processing functions. Also supports running the
 Goal is to make it easier to integrate custom datasets not yet in TDC format.
 """
 
-from pandas import DataFrame
 import requests
+from pandas import DataFrame
 
 from .data_feature_generator import DataFeatureGenerator
 

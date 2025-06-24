@@ -2,18 +2,14 @@
 # Adapted by TDC.
 
 import hashlib
-import json
-import os
+import operator
 import sys
-from shutil import copyfile
+from collections import Counter
 from collections import OrderedDict
 from numbers import Number
-import operator
 
 import numpy as np
 import torch
-import tqdm
-from collections import Counter
 
 
 def make_weights_for_balanced_classes(dataset):

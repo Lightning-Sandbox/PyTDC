@@ -2,8 +2,9 @@
 # Author: TDC Team
 # License: MIT
 
-import numpy as np
 import os
+
+import numpy as np
 
 try:
     from rdkit import Chem, DataStructs

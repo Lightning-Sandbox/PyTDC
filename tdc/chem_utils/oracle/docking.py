@@ -1,6 +1,7 @@
 import sys
-from vina import Vina
 from time import time
+
+from vina import Vina
 
 ligand_pdbqt_file = sys.argv[1]
 receptor_pdbqt_file = sys.argv[2]

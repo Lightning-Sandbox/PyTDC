@@ -1,6 +1,7 @@
-import os
-import torch
 import logging as log
+import os
+
+import torch
 
 from ..common.utils import Recorder
 

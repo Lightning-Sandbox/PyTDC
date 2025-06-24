@@ -1,14 +1,13 @@
-import gym
 import itertools
+
+import gym
 import numpy as np
 from rdkit import Chem  # TODO(Bowen): remove and just use AllChem
-from rdkit.Chem import AllChem
-from rdkit.Chem.Descriptors import qed, MolLogP
-from rdkit.Chem import rdMolDescriptors
-from rdkit.Chem.FilterCatalog import FilterCatalogParams, FilterCatalog
-import os
-
 from rdkit import RDLogger
+from rdkit.Chem import AllChem
+from rdkit.Chem import rdMolDescriptors
+from rdkit.Chem.Descriptors import qed, MolLogP
+from rdkit.Chem.FilterCatalog import FilterCatalogParams, FilterCatalog
 
 RDLogger.DisableLog("rdApp.*")
 
@@ -64,8 +63,6 @@ import networkx as nx
 from gym_molecule.envs.sascorer import calculateScore
 from gym_molecule.dataset.dataset_utils import gdb_dataset, mol_to_nx, nx_to_mol
 import random
-import time
-import matplotlib.pyplot as plt
 import csv
 
 from contextlib import contextmanager

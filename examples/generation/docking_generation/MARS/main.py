@@ -1,20 +1,17 @@
-import os
-import rdkit
-import torch
-import random
-import pathlib
 import argparse
-import numpy as np
 import logging as log
-from tqdm import tqdm
+import os
+import random
+
+import torch
 from rdkit import Chem, RDLogger
 
+from .datasets.utils import load_mols
 from .estimator.estimator import Estimator
 from .estimator.models import Discriminator
 from .proposal.models.editor_basic import BasicEditor
 from .proposal.proposal import Proposal_Random, Proposal_Editor, Proposal_Mix
 from .sampler import Sampler_SA, Sampler_MH, Sampler_Recursive
-from .datasets.utils import load_mols
 
 lg = RDLogger.logger()
 lg.setLevel(RDLogger.CRITICAL)

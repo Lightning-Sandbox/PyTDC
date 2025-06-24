@@ -23,16 +23,17 @@ from __future__ import print_function
 import functools
 import json
 import os
+
 from absl import app
 from absl import flags
-from rdkit import Chem
-from rdkit.Chem import QED
-from tensorflow.compat.v1 import gfile
 from mol_dqn.chemgraph.mcts import deep_q_networks
 from mol_dqn.chemgraph.mcts import molecules as molecules_mdp
 from mol_dqn.chemgraph.mcts import run_dqn
 from mol_dqn.chemgraph.mcts.experimental import deep_q_networks_noise
 from mol_dqn.chemgraph.tensorflow import core
+from rdkit import Chem
+from rdkit.Chem import QED
+from tensorflow.compat.v1 import gfile
 
 flags.DEFINE_string("error_type", "robust", "error_type.")
 flags.DEFINE_float("noise_std", 0.1, "std dev of noise.")

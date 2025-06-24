@@ -1,6 +1,7 @@
 import os
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 for i in range(1, 4):
     result_folder = "result." + str(i) + ".run"

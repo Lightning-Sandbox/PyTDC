@@ -3,13 +3,12 @@ import time
 from typing import Any, Dict, List, Tuple, Optional
 
 import numpy as np
-
+from guacamol.goal_directed_generator import GoalDirectedGenerator
 from guacamol.goal_directed_score_contributions import (
     ScoreContributionSpecification,
     compute_global_score,
 )
 from guacamol.scoring_function import ScoringFunction, ScoringFunctionWrapper
-from guacamol.goal_directed_generator import GoalDirectedGenerator
 from guacamol.utils.chemistry import (
     canonicalize_list,
     remove_duplicates,

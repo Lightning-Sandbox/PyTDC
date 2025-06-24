@@ -1,4 +1,3 @@
-from rdkit.DataStructs import cDataStructs
 from DeepPurpose import CompoundPred as models
 from DeepPurpose.utils import *
 

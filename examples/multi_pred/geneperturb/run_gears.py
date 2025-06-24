@@ -1,8 +1,10 @@
-from tdc.benchmark_group import geneperturb_group
-from gears.utils import filter_pert_in_go
+import pickle
+
 import numpy as np
 from gears import PertData, GEARS
-import pickle
+from gears.utils import filter_pert_in_go
+
+from tdc.benchmark_group import geneperturb_group
 
 group = geneperturb_group.GenePerturbGroup()
 dataset = 'scperturb_gene_NormanWeissman2019'

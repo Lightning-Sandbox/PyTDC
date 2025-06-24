@@ -1,7 +1,6 @@
 """Utilities functions for query
 """
 import json
-import os, sys
 
 try:
     from urllib.error import HTTPError
@@ -73,8 +72,6 @@ def uniprot2seq(ProteinID):
     Returns:
         str: amino acid sequence
     """
-    import urllib
-    import string
     import urllib.request as ur
 
     ID = str(ProteinID)

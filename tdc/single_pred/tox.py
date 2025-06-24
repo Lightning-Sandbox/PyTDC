@@ -8,7 +8,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from . import single_pred_dataset
-from ..utils import print_sys
 from ..metadata import dataset_names
 
 

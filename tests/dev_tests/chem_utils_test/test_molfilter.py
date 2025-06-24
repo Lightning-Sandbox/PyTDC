@@ -4,9 +4,8 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-
-import unittest
 import shutil
+import unittest
 
 from tdc.chem_utils import MolFilter
 

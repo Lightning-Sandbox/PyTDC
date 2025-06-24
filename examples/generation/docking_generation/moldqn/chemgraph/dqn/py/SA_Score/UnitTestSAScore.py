@@ -1,6 +1,7 @@
-from rdkit import RDConfig
+import unittest
+
 from rdkit import Chem
-import unittest, os.path
+
 import sascorer
 
 print(sascorer.__file__)

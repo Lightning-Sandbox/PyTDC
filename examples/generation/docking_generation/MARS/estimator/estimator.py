@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
+from rdkit import DataStructs
 from rdkit.Chem import AllChem
-from rdkit import Chem, DataStructs
 from torch.utils.data import DataLoader
 
 # from .scorer import chemprop_scorer

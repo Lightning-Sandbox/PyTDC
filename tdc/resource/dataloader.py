@@ -9,8 +9,8 @@ import pandas as pd
 
 from .. import base_dataset
 from .. import metadata
-from ..utils import load
 from ..dataset_configs import config, config_map
+from ..utils import load
 
 
 class DataLoader(base_dataset.DataLoader, dict):

@@ -2,17 +2,17 @@
 # Author: TDC Team
 # License: MIT"
 
-import pandas as pd
-import numpy as np
-import os, sys, json
+import os
+import sys
 import warnings
+
+import numpy as np
 
 warnings.filterwarnings("ignore")
 
 from .. import base_dataset
 from ..utils import bi_distribution_dataset_load, print_sys
 from ..utils import create_combination_generation_split
-from ..metadata import dataset_names
 
 
 class SBDD(base_dataset.DataLoader):

@@ -3,6 +3,7 @@ Class encapsulating general data processing functions. Also supports running the
 Goal is to make it easier to integrate custom datasets not yet in TDC format.
 """
 import inspect
+
 from pandas import DataFrame, isnull
 
 from .base import FeatureGenerator

@@ -9,7 +9,6 @@ import tqdm
 from guacamol.assess_distribution_learning import assess_distribution_learning
 from guacamol.distribution_matching_generator import DistributionMatchingGenerator
 from guacamol.utils.helpers import setup_default_logger
-
 from moses.aae import AAE
 from moses.script_utils import add_sample_args, set_seed
 

@@ -5,10 +5,11 @@
 This file contains a base data loader object that specific one can inherit from.
 """
 
-import pandas as pd
-import numpy as np
 import sys
 import warnings
+
+import numpy as np
+import pandas as pd
 
 warnings.filterwarnings("ignore")
 

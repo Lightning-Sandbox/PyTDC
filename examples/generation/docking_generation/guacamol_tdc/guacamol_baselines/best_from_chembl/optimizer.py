@@ -1,12 +1,10 @@
-import heapq
-from typing import List, Optional, Tuple
+from typing import List, Optional
 
 import joblib
 from guacamol.goal_directed_generator import GoalDirectedGenerator
 from guacamol.scoring_function import ScoringFunction
-from joblib import delayed
-
 from guacamol.scoring_function import max_oracle_num
+from joblib import delayed
 
 from .chembl_file_reader import ChemblFileReader
 

@@ -21,12 +21,10 @@ mpl.rcParams["font.sans-serif"] = [
 
 import seaborn as sns
 import math
-import rdkit
 import itertools
 from rdkit import Chem, DataStructs
-from rdkit.Chem import rdDepictor
 from rdkit.Chem.Draw import rdMolDraw2D
-from rdkit.Chem import AllChem, Draw, Descriptors, QED
+from rdkit.Chem import AllChem, QED
 import json
 import numpy as np
 import matplotlib.pyplot as plt

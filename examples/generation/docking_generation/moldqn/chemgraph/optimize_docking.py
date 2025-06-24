@@ -30,10 +30,6 @@ import os
 
 from absl import app
 from absl import flags
-
-from rdkit import Chem
-
-from rdkit.Chem import QED
 from tensorflow.compat.v1 import gfile
 
 from dqn import deep_q_networks

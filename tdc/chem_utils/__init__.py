@@ -7,6 +7,7 @@ from .evaluator import (
     fcd_distance,
 )
 from .featurize.molconvert import MolConvert
+from .oracle.filter import MolFilter
 from .oracle.oracle import (
     PyScreener_meta,
     Vina_3d,
@@ -50,4 +51,3 @@ from .oracle.oracle import (
     qed,
     penalized_logp,
 )
-from .oracle.filter import MolFilter

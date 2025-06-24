@@ -2,15 +2,8 @@
 # Adapted by TDC.
 
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 import torch.autograd as autograd
-from torch.autograd import Variable
-
-import copy
-import numpy as np
-from collections import defaultdict
-
+import torch.nn as nn
 from domainbed import networks
 from domainbed.lib.misc import random_pairs_of_minibatches, ParamDict
 

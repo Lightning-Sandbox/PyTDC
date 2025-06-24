@@ -1,10 +1,11 @@
 """miscellaneous utilities functions
 """
-import os, sys
+import pickle
+import subprocess
+import sys
+
 import numpy as np
 import pandas as pd
-import subprocess
-import pickle
 from fuzzywuzzy import fuzz
 
 

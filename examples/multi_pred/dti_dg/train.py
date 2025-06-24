@@ -1,22 +1,21 @@
 import argparse
 import collections
+import copy
 import json
 import os
+import pickle
 import random
 import sys
 import time
-import uuid
-import copy
-import pickle
 
-import numpy as np
 import PIL
+import numpy as np
 import torch
 import torch.utils.data
 
+from domainbed import algorithms
 from domainbed import datasets
 from domainbed import hparams_registry
-from domainbed import algorithms
 from domainbed.lib import misc
 from domainbed.lib.fast_data_loader import InfiniteDataLoader, FastDataLoader
 

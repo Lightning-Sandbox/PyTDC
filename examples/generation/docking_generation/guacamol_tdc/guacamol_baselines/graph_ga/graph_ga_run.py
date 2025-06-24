@@ -1,18 +1,12 @@
 from __future__ import print_function
 
-import argparse
-import heapq
-import json
 import os
-import random
-from time import time
-from typing import List, Optional
-
-from tqdm import tqdm
 import pickle
-import joblib
-import numpy as np
+import random
+from typing import List
 
+import numpy as np
+from graph_ga import crossover as co, mutate as mu
 # from guacamol.assess_goal_directed_generation import assess_goal_directed_generation
 # from guacamol.goal_directed_generator import GoalDirectedGenerator
 # from guacamol.scoring_function import ScoringFunction
@@ -20,8 +14,7 @@ import numpy as np
 # from joblib import delayed
 from rdkit import Chem
 from rdkit.Chem.rdchem import Mol
-
-from graph_ga import crossover as co, mutate as mu
+from tqdm import tqdm
 
 result_folder = "/project/molecular_data/graphnn/pyscreener/graph_ga/results.3/"
 

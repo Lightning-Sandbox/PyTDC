@@ -1,6 +1,7 @@
-from huggingface_hub import create_repo
-from huggingface_hub import HfApi, snapshot_download, hf_hub_download
 import os
+
+from huggingface_hub import HfApi, snapshot_download, hf_hub_download
+from huggingface_hub import create_repo
 
 deeppurpose_repo = [
     'hERG_Karim-Morgan',

@@ -16,14 +16,12 @@
 # peter ertl & greg landrum, september 2013
 #
 
-from rdkit import Chem
-from rdkit.Chem import rdMolDescriptors
+import math
+import os.path as op
 import pickle
 
-import math
-from collections import defaultdict
-
-import os.path as op
+from rdkit import Chem
+from rdkit.Chem import rdMolDescriptors
 
 _fscores = None
 

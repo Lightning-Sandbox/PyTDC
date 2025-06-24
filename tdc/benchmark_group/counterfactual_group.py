@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # Author: TDC Team
 # License: MIT
-import numpy as np
 import os
+
+import numpy as np
 import pandas as pd
 
 from .base_group import BenchmarkGroup

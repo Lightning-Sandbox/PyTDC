@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
 import os
-
-import unittest
 import shutil
+import unittest
+
 import numpy as np
+import torch
 
-# TODO: add verification for the generation other than simple integration
-
-from tdc.resource import cellxgene_census
+from tdc import tdc_hf_interface
 from tdc.model_server.tokenizers.geneformer import GeneformerTokenizer
 from tdc.model_server.tokenizers.scgpt import scGPTTokenizer
-import torch
-from tdc.multi_pred.perturboutcome import PerturbOutcome
 from tdc.multi_pred.anndata_dataset import DataLoader
-from tdc import tdc_hf_interface
+from tdc.multi_pred.perturboutcome import PerturbOutcome
+from tdc.resource import cellxgene_census
+
+# TODO: add verification for the generation other than simple integration
 
 
 def quant_layers(model):

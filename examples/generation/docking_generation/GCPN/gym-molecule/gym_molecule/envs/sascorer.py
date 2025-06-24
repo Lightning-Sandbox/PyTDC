@@ -17,15 +17,13 @@
 #
 from __future__ import print_function
 
+import math
+import os.path as op
+
 from rdkit import Chem
 from rdkit.Chem import rdMolDescriptors
-from rdkit.six.moves import cPickle
 from rdkit.six import iteritems
-
-import math
-from collections import defaultdict
-
-import os.path as op
+from rdkit.six.moves import cPickle
 
 _fscores = None
 

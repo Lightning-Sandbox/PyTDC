@@ -1,4 +1,5 @@
 import logging
+import pickle
 import time
 from functools import total_ordering
 from typing import List, Set
@@ -6,8 +7,6 @@ from typing import List, Set
 import numpy as np
 import torch
 import torch.nn as nn
-import pickle
-
 # from guacamol.scoring_function import ScoringFunction
 from guacamol.utils.chemistry import canonicalize_list
 

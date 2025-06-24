@@ -1,9 +1,10 @@
-from ..utils import general_load
-from ..utils.load import download_wrapper, load_json_from_txt_file, zip_data_download_wrapper
+import os
 
 import pandas as pd
-import os
 import torch
+
+from ..utils import general_load
+from ..utils.load import download_wrapper, load_json_from_txt_file, zip_data_download_wrapper
 
 
 class PINNACLE:
