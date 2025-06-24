@@ -5,8 +5,9 @@
 This file contains a primekg dataloader.
 """
 
-import numpy as np
 import warnings
+
+import numpy as np
 
 from ..utils import general_load
 from ..utils.knowledge_graph import KnowledgeGraph

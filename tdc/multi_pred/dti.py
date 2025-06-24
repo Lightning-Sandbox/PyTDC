@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore")
 import sys
 
 from ..utils import print_sys
-from . import bi_pred_dataset, multi_pred_dataset
+from . import bi_pred_dataset
 from ..metadata import dataset_names
 
 

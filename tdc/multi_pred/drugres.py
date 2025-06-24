@@ -8,8 +8,8 @@ warnings.filterwarnings("ignore")
 import sys
 
 from ..utils import print_sys
-from ..utils.load import download_wrapper, pd_load
-from . import bi_pred_dataset, multi_pred_dataset
+from ..utils.load import download_wrapper
+from . import bi_pred_dataset
 from ..metadata import dataset_names
 
 

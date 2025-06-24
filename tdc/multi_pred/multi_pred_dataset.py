@@ -2,9 +2,7 @@
 # Author: TDC Team
 # License: MIT
 
-import pandas as pd
-import numpy as np
-import os, sys, json
+import sys
 import warnings
 
 warnings.filterwarnings("ignore")

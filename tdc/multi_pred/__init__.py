@@ -7,9 +7,9 @@ from .dti import DTI
 from .gda import GDA
 from .mti import MTI
 from .peptidemhc import PeptideMHC
+from .perturboutcome import PerturbOutcome
 from .ppi import PPI
 from .proteinpeptide import ProteinPeptide
-from .test_multi_pred import TestMultiPred
 from .tcr_epi import TCREpitopeBinding
+from .test_multi_pred import TestMultiPred
 from .trialoutcome import TrialOutcome
-from .perturboutcome import PerturbOutcome

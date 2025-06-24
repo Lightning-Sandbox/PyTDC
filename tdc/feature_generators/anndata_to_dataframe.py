@@ -2,8 +2,9 @@
 Class for customizations when transforming anndata format objects to pandas.DataFrame or other formats
 """
 
-import pandas as pd
 import numpy as np
+import pandas as pd
+
 from .data_feature_generator import DataFeatureGenerator
 
 

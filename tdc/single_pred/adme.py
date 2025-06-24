@@ -8,7 +8,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from . import single_pred_dataset
-from ..utils import print_sys, fuzzy_search, property_dataset_load
+from ..utils import fuzzy_search, property_dataset_load
 from ..metadata import dataset_names
 
 

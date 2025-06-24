@@ -7,7 +7,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from . import generation_dataset
-from ..metadata import dataset_names
 from ..utils import create_fold
 
 

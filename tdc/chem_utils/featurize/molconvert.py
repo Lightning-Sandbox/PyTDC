@@ -3,7 +3,6 @@
 # License: MIT
 
 import numpy as np
-from typing import List
 
 try:
     from rdkit import Chem, DataStructs
@@ -19,12 +18,7 @@ except:
 
 from ...utils import print_sys
 from ..oracle.oracle import (
-    smiles_to_rdkit_mol,
-    smiles_2_fingerprint_ECFP4,
-    smiles_2_fingerprint_FCFP4,
-    smiles_2_fingerprint_AP,
-    smiles_2_fingerprint_ECFP6,
-)
+    smiles_to_rdkit_mol,)
 from ._smiles2pubchem import smiles2pubchem
 
 

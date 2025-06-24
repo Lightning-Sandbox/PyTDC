@@ -7,9 +7,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import numpy as np
 from sklearn.model_selection import train_test_split
-import sys
 
-from ..utils import print_sys
 from .single_cell import CellXGeneTemplate
 from ..dataset_configs.config_map import scperturb_gene_datasets
 
@@ -78,7 +76,6 @@ def rank_genes_groups_by_cov(
 
 
 def get_DE_genes(adata):
-    import scanpy as sc
     adata.obs.loc[:, 'dose_val'] = adata.obs.condition.apply(
         lambda x: '1+1' if len(x.split('+')) == 2 else '1')
     adata.obs.loc[:, 'control'] = adata.obs.condition.apply(

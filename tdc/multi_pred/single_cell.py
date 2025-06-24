@@ -1,6 +1,6 @@
 from collections.abc import Iterable
+
 import pandas as pd
-import tiledbsoma
 
 from .anndata_dataset import DataLoader
 from ..dataset_configs.cellxgene_config import CellXGeneConfig

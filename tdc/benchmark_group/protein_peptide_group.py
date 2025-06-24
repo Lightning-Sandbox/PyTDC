@@ -25,7 +25,6 @@ class ProteinPeptideGroup(BenchmarkGroup):
 
     def get_train_valid_split(self):
         """parameters included for compatibility. this benchmark has a fixed train/test split."""
-        import pandas as pd
         from sklearn.model_selection import train_test_split
         from ..multi_pred.proteinpeptide import ProteinPeptide as DataLoader
         if self.split is None:
@@ -54,7 +53,6 @@ class ProteinPeptideGroup(BenchmarkGroup):
         return self.split["train"], self.split["dev"]
 
     def get_test(self):
-        from ..multi_pred.proteinpeptide import ProteinPeptide as DataLoader
         if self.split is None:
             self.get_train_valid_split()
         return self.split["test"]

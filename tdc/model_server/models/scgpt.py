@@ -1,8 +1,9 @@
-from transformers import PretrainedConfig, PreTrainedModel
-import torch.nn as nn
-import torch
-import torch.nn.functional as F
 from typing import Optional, Dict
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from transformers import PretrainedConfig
 
 
 class ScGPTConfig(PretrainedConfig):

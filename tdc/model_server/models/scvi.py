@@ -1,9 +1,10 @@
-import torch.nn as nn
-import scvi as scvi_package
 import os
-import torch
-import numpy as np
 
+import numpy as np
+import torch
+import torch.nn as nn
+
+import scvi as scvi_package
 from tdc.model_server.model_loaders import scvi_loader
 from tdc.multi_pred.anndata_dataset import DataLoader
 
@@ -11,7 +12,6 @@ from tdc.multi_pred.anndata_dataset import DataLoader
 class scVI(nn.Module):
 
     def __init__(self):
-        import scvi as scvi_package
 
         super().__init__()
         self.model = None

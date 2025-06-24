@@ -1,5 +1,6 @@
-import numpy as np
 from typing import List, Tuple
+
+import numpy as np
 
 from ...utils.load import pd_load, download_wrapper
 

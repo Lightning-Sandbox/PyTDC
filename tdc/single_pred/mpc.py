@@ -5,15 +5,14 @@
 # Author: TDC Team
 # License: MIT
 
-import pandas as pd
-import sys
 import warnings
+
+import pandas as pd
 
 warnings.filterwarnings("ignore")
 
 from . import single_pred_dataset
 from ..utils import create_fold_setting_cold, create_scaffold_split
-from ..metadata import dataset_names
 
 
 class MPC(single_pred_dataset.DataLoader):

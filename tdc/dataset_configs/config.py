@@ -1,8 +1,5 @@
 """General class for representing dataset configs"""
 
-import pandas as pd
-
-from ..base_dataset import DataLoader
 from ..feature_generators import resource, base
 
 

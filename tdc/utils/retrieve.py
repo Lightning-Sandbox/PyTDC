@@ -1,10 +1,8 @@
 """Utilities functions for dataset/metadata retrieval
 """
-import os, sys
-import pandas as pd
 from .label_name_list import dataset2target_lists
-from .misc import fuzzy_search
 from .load import pd_load
+from .misc import fuzzy_search
 from ..metadata import dataset_names, benchmark_names, dataset_list
 
 

@@ -1,5 +1,4 @@
 import numpy as np
-import os
 
 try:
     from rdkit import Chem, DataStructs
@@ -15,7 +14,7 @@ try:
 except:
     raise ImportError("Please install networkx by 'pip install networkx'! ")
 
-from ...utils import print_sys, install
+from ...utils import print_sys
 from ._smartsPatts import smartsPatts
 
 PubChemKeys = None
