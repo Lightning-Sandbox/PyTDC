@@ -38,15 +38,10 @@ jobs:
         if: ${{ matrix.install-deps == 'old' }}
         run: echo "OLD_DEPENDENCIES=-r .github/requires_old.txt" >> $GITHUB_ENV
 
-      #- name: Install git-lfs
-      #  run: |
-      #    sudo apt-get install git-lfs
-      #    git lfs install
-
       - name: Install package & dependencies
         run: |
           pip install . -U -q -r requires_test.txt $OLD_DEPENDENCIES
           pip list
 
       - name: Run tests
-        run: pytest tests/ -v --disable-warnings --color=yes
+        run: pytest tests/ -v --disable-warnings --color=yes -n auto --dist=loadscope
