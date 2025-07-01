@@ -49,10 +49,6 @@
    :target: https://travis-ci.org/github/mims-harvard/TDC
    :alt: Build Status
 
-.. image:: https://circleci.com/gh/mims-harvard/TDC.svg?style=svg
-   :target: https://app.circleci.com/pipelines/github/mims-harvard/TDC
-   :alt: Circle CI
-
 .. image:: https://readthedocs.org/projects/tdc/badge/?version=latest
    :target: http://tdc.readthedocs.io/?badge=latest
    :alt: Doc Status
