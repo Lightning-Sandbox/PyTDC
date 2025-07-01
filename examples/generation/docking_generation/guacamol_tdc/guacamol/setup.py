@@ -33,8 +33,8 @@ setup(
         "tqdm>=4.26.0",
         "FCD==1.1",
         # FCD doesn't pin the tensorflow and Keras dependencies, so we have to do the honours
-        "tensorflow==1.15.4",
-        "Keras==2.1.0",
+        "tensorflow==2.12.1",
+        "Keras==3.9.0",
         "h5py==2.10.0",
     ],
     python_requires=">=3.6",
