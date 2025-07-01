@@ -72,7 +72,7 @@ class scVI(nn.Module):
         https://huggingface.co/datasets/scvi-tools/DATASET-FOR-UNIT-TESTING-1/tree/main
         '''
         metadata = torch.load("scvi_model/model.pt",
-                              map_location=torch.device('cpu'))
+                              map_location=torch.device('cpu'), weights_only=False)
 
         # setting indices that match
         adata.var.index = metadata["attr_dict"]["registry_"][
