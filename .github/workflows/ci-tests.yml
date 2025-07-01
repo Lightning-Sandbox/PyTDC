@@ -44,4 +44,4 @@ jobs:
           pip list
 
       - name: Run tests
-        run: pytest tests/ -v --disable-warnings --color=yes -n auto --dist=loadscope
+        run: pytest tests/ -v --disable-warnings --color=yes -n auto --dist=loadfile
