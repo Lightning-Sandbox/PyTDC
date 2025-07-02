@@ -19,22 +19,22 @@ from tdc.utils import uniprot2seq
 
 class TestFunctions(unittest.TestCase):
 
-    def test_neg_sample(self, tmp_path):
-        data = PPI(name="HuRI", path=str(tmp_path))
+    def test_neg_sample(self, tmpdir):
+        data = PPI(name="HuRI", path=str(tmpdir))
         data.neg_sample(frac=1)
 
     @unittest.skip("this is a visual test and should only be run locally")
-    def test_label_distribution(self, tmp_path):
-        data = ADME(name='Caco2_Wang', path=str(tmp_path))
+    def test_label_distribution(self, tmpdir):
+        data = ADME(name='Caco2_Wang', path=str(tmpdir))
         data.label_distribution()
 
-    def test_get_label_map(self, tmp_path):
-        data = DDI(name="DrugBank", path=str(tmp_path))
+    def test_get_label_map(self, tmpdir):
+        data = DDI(name="DrugBank", path=str(tmpdir))
         data.get_split()
         get_label_map(name="DrugBank", task="DDI")
 
-    def test_balanced(self, tmp_path):
-        data = HTS(name="SARSCoV2_3CLPro_Diamond", path=str(tmp_path))
+    def test_balanced(self, tmpdir):
+        data = HTS(name="SARSCoV2_3CLPro_Diamond", path=str(tmpdir))
         data.balanced(oversample=True, seed=42)
 
     def test_cid2smiles(self):
@@ -44,8 +44,8 @@ class TestFunctions(unittest.TestCase):
         uniprot2seq("P49122")
 
     # note - this test might fail locally
-    def test_to_graph(self, tmp_path):
-        data = DTI(name="DAVIS", path=str(tmp_path))
+    def test_to_graph(self, tmpdir):
+        data = DTI(name="DAVIS", path=str(tmpdir))
         data.to_graph(
             threshold=30,
             format="edge_list",
