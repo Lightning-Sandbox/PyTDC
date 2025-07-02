@@ -31,7 +31,7 @@ class TestFunctions:
     def test_get_label_map(self, tmp_path):
         data = DDI(name="DrugBank", path=str(tmp_path))
         data.get_split()
-        get_label_map(name="DrugBank", task="DDI")
+        get_label_map(name="DrugBank", task="DDI", path=str(tmp_path))
 
     def test_balanced(self, tmp_path):
         data = HTS(name="SARSCoV2_3CLPro_Diamond", path=str(tmp_path))

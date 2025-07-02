@@ -9,7 +9,7 @@ from tdc.resource.pharmone import PharmoneMap
 from tdc.resource.pinnacle import PINNACLE
 
 
-class TestCellXGene:
+class TestCellXGene(unittest.TestCase):
 
     def setUp(self):
         self.resource = cellxgene_census.CensusResource()
