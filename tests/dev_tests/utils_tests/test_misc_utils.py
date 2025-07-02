@@ -17,7 +17,7 @@ from tdc.utils import get_label_map
 from tdc.utils import uniprot2seq
 
 
-class TestFunctions(unittest.TestCase):
+class TestFunctions:
 
     def test_neg_sample(self, tmp_path):
         data = PPI(name="HuRI", path=str(tmp_path))

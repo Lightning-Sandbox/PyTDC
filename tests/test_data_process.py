@@ -15,10 +15,6 @@ from tdc.feature_generators.protein_feature_generator import ProteinFeatureGener
 
 class TestDataFeatureGenerator(unittest.TestCase):
 
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
     def testAutofill(self):
         test_entries = [[0, "x", 8], [1, 'y', 4], [None, "x", 9],
                         [None, "y", 8], [2, "z", 12]]
@@ -118,10 +114,6 @@ class TestDataFeatureGenerator(unittest.TestCase):
 
 
 class TestProteinDataUtil(unittest.TestCase):
-
-    def setUp(self):
-        print(os.getcwd())
-        pass
 
     def testInsertProteinSequence(self):
         test_entries = [

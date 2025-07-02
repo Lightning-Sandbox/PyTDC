@@ -28,8 +28,7 @@ def quant_layers(model):
 class TestModelServer(unittest.TestCase):
 
     def setUp(self):
-        print(os.getcwd())
-        self.resource = cellxgene_census.CensusResource()
+        self._resource = cellxgene_census.CensusResource()
 
     def testscGPT(self):
         adata = DataLoader("cellxgene_sample_small",
@@ -97,7 +96,7 @@ class TestModelServer(unittest.TestCase):
         assert num_gene_out_in_batch == mdim, f"FAILURE: out length {num_gene_out_in_batch} doesn't match gene length {mdim}"
 
     def testGeneformerTokenizer(self):
-        adata = self.resource.get_anndata(
+        adata = self._resource.get_anndata(
             var_value_filter=
             "feature_id in ['ENSG00000161798', 'ENSG00000188229']",
             obs_value_filter=

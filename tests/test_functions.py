@@ -9,7 +9,7 @@ from tdc import Evaluator
 from tdc.single_pred import TestSinglePred
 
 
-class TestFunctions(unittest.TestCase):
+class TestFunctions:
 
     def test_Evaluator(self):
         evaluator = Evaluator(name="ROC-AUC")

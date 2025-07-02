@@ -22,11 +22,7 @@ from tdc.single_pred.mpc import MPC
 # TODO: add verification for the generation other than simple integration
 
 
-class TestDataloader(unittest.TestCase):
-
-    def setUp(self):
-        print(os.getcwd())
-        pass
+class TestDataloader:
 
     def test_single_pred(self, tmp_path):
         data = TestSinglePred(name="Test_Single_Pred", path=str(tmp_path))

@@ -9,7 +9,7 @@ from tdc.resource.pharmone import PharmoneMap
 from tdc.resource.pinnacle import PINNACLE
 
 
-class TestCellXGene(unittest.TestCase):
+class TestCellXGene:
 
     def setUp(self):
         self.resource = cellxgene_census.CensusResource()
@@ -52,7 +52,7 @@ class TestCellXGene(unittest.TestCase):
         print("f", FMslice)
 
 
-class TestPrimeKG(unittest.TestCase):
+class TestPrimeKG:
 
     def test_node_retrieval(self, tmp_path):
         data = PrimeKG(path=str(tmp_path))
@@ -62,7 +62,7 @@ class TestPrimeKG(unittest.TestCase):
         assert "1" in l and "9997" in l
 
 
-class TestPINNACLE(unittest.TestCase):
+class TestPINNACLE:
 
     def test_mg_ppi_load(self, tmp_path):
         pinnacle = PINNACLE(path=str(tmp_path))
@@ -102,7 +102,7 @@ class TestPINNACLE(unittest.TestCase):
         assert len(exp_data) > 0, "PINNACLE exp_data is empty"
 
 
-class TestPharmoneMap(unittest.TestCase):
+class TestPharmoneMap:
 
     def test_get_data(self, tmp_path):
         resource = PharmoneMap(path=str(tmp_path))

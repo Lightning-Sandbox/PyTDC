@@ -13,7 +13,7 @@ from tdc.multi_pred import DrugSyn
 from tdc.single_pred import ADME
 
 
-class TestFunctions(unittest.TestCase):
+class TestFunctions:
 
     def test_random_split(self, tmp_path):
         data = ADME(name="Caco2_Wang", path=str(tmp_path))
