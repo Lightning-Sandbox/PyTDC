@@ -8,7 +8,6 @@ import shutil
 import unittest
 
 import pytest
-# from transformers import Pipeline
 from transformers import BertForMaskedLM as BertModel
 
 from tdc import tdc_hf_interface
@@ -19,16 +18,12 @@ from tdc.single_pred import Tox
 
 class TestHF(unittest.TestCase):
 
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
     @pytest.mark.skip(
         reason="This test is skipped due to deeppurpose installation dependency"
     )
     @unittest.skip(reason="DeepPurpose")
-    def test_hf_load_predict(self):
-        Tox(name='herg_karim')
+    def test_hf_load_predict(self, tmpdir):
+        Tox(name='herg_karim', path=str(tmpdir))
 
         tdc_hf = tdc_hf_interface("hERG_Karim-CNN")
         # load deeppurpose model from this repo
@@ -48,14 +43,3 @@ class TestHF(unittest.TestCase):
     #     tdc_hf = tdc_hf_interface("mli-PINNACLE")
     #     dp_model = tdc_hf.load()
     #     assert dp_model is not None
-
-    def tearDown(self):
-        try:
-            print(os.getcwd())
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))
-        except:
-            pass
-
-
-if __name__ == "__main__":
-    unittest.main()

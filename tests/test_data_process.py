@@ -97,8 +97,7 @@ class TestDataFeatureGenerator(unittest.TestCase):
         self.assertEqual(df2["lower"].tolist(), [3.2, 7.7, 0, 0, 0])
         self.assertEqual(df2["upper"].tolist(), [12.2, 12.3, 0, 0, 0])
         self.assertEqual(df2["num"].tolist(), [
-            "7.7±4.5", "10±2.3", "Putative binder", "Putative binder",
-            "Putative binder"
+            "7.7±4.5", "10±2.3", "Putative binder", "Putative binder", "Putative binder"
         ])
         self.assertEqual(df2["some_value"].tolist(), [0, 1, 5, 5, 5])
         self.assertEqual(df2.shape[0], 5)
