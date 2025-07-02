@@ -17,28 +17,24 @@ from tdc.utils import get_label_map
 from tdc.utils import uniprot2seq
 
 
-class TestFunctions(unittest.TestCase):
+class TestFunctions:
 
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
-    def test_neg_sample(self):
-        data = PPI(name="HuRI")
-        data = data.neg_sample(frac=1)
+    def test_neg_sample(self, tmp_path):
+        data = PPI(name="HuRI", path=str(tmp_path))
+        data.neg_sample(frac=1)
 
     @unittest.skip("this is a visual test and should only be run locally")
-    def test_label_distribution(self):
-        data = ADME(name='Caco2_Wang')
-        x = data.label_distribution()
+    def test_label_distribution(self, tmp_path):
+        data = ADME(name='Caco2_Wang', path=str(tmp_path))
+        data.label_distribution()
 
-    def test_get_label_map(self):
-        data = DDI(name="DrugBank")
-        split = data.get_split()
-        get_label_map(name="DrugBank", task="DDI")
+    def test_get_label_map(self, tmp_path):
+        data = DDI(name="DrugBank", path=str(tmp_path))
+        data.get_split()
+        get_label_map(name="DrugBank", task="DDI", path=str(tmp_path))
 
-    def test_balanced(self):
-        data = HTS(name="SARSCoV2_3CLPro_Diamond")
+    def test_balanced(self, tmp_path):
+        data = HTS(name="SARSCoV2_3CLPro_Diamond", path=str(tmp_path))
         data.balanced(oversample=True, seed=42)
 
     def test_cid2smiles(self):
@@ -48,9 +44,8 @@ class TestFunctions(unittest.TestCase):
         uniprot2seq("P49122")
 
     # note - this test might fail locally
-    def test_to_graph(self):
-
-        data = DTI(name="DAVIS")
+    def test_to_graph(self, tmp_path):
+        data = DTI(name="DAVIS", path=str(tmp_path))
         data.to_graph(
             threshold=30,
             format="edge_list",
@@ -79,9 +74,3 @@ class TestFunctions(unittest.TestCase):
             order="descending",
         )
         # output: {'pyg_graph': the PyG graph object, 'index_to_entities': a dict map from ID in the data to node ID in the PyG object, 'split': {'train': df, 'valid': df, 'test': df}}
-
-    def tearDown(self):
-        print(os.getcwd())
-
-        if os.path.exists(os.path.join(os.getcwd(), "data")):
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))

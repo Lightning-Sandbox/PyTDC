@@ -1,3 +1,4 @@
+import random
 import shutil
 import unittest
 
@@ -67,7 +68,7 @@ class TestBenchmarkGroup(unittest.TestCase):
 
     def test_SCDTI_benchmark(self):
         group = scdti_group.SCDTIGroup()
-        train_val = group.get_train_valid_split()
+        train_val = group.get_train_valid_split(seed=random.randint(0, 10000))
         assert "train" in train_val, "no training set"
         assert "val" in train_val, "no validation set"
         assert len(train_val["train"]) > 0, "no entries in training set"

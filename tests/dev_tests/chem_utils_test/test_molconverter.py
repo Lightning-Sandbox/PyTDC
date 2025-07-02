@@ -12,10 +12,6 @@ from tdc.chem_utils import MolConvert
 
 class TestMolConvert(unittest.TestCase):
 
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
     def test_MolConvert(self):
         converter = MolConvert(src="SMILES", dst="Graph2D")
         converter([

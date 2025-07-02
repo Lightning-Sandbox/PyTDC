@@ -28,7 +28,6 @@ def quant_layers(model):
 class TestModelServer(unittest.TestCase):
 
     def setUp(self):
-        print(os.getcwd())
         self.resource = cellxgene_census.CensusResource()
 
     def testscGPT(self):
