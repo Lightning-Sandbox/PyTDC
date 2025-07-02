@@ -54,8 +54,8 @@ class TestCellXGene(unittest.TestCase):
 
 class TestPrimeKG(unittest.TestCase):
 
-    def test_node_retrieval(self, tmpdir):
-        data = PrimeKG(path=str(tmpdir))
+    def test_node_retrieval(self, tmp_path):
+        data = PrimeKG(path=str(tmp_path))
         drug_feature = data.get_features(feature_type='drug')
         data.to_nx()
         l = data.get_node_list('disease')
@@ -64,8 +64,8 @@ class TestPrimeKG(unittest.TestCase):
 
 class TestPINNACLE(unittest.TestCase):
 
-    def test_mg_ppi_load(self, tmpdir):
-        pinnacle = PINNACLE(path=str(tmpdir))
+    def test_mg_ppi_load(self, tmp_path):
+        pinnacle = PINNACLE(path=str(tmp_path))
         assert isinstance(pinnacle.get_ppi(), DataFrame)
         assert isinstance(pinnacle.get_mg(), DataFrame)
         assert len(pinnacle.get_ppi()) > 0
@@ -74,8 +74,8 @@ class TestPINNACLE(unittest.TestCase):
         assert isinstance(embeds, DataFrame)
         assert len(embeds) > 0, "PINNACLE embeds is empty"
 
-    def test_embeddings(self, tmpdir):
-        pinnacle = PINNACLE(path=str(tmpdir))
+    def test_embeddings(self, tmp_path):
+        pinnacle = PINNACLE(path=str(tmp_path))
         embeds = pinnacle.get_embeds()
         assert isinstance(embeds, DataFrame)
         assert len(embeds) > 0, "PINNACLE embeds is empty"
@@ -95,8 +95,8 @@ class TestPINNACLE(unittest.TestCase):
         assert len(set(cells)) == num_cells, "{} vs {} for cell_types".format(
             len(cells), num_cells)
 
-    def test_exp_data(self, tmpdir):
-        pinnacle = PINNACLE(path=str(tmpdir))
+    def test_exp_data(self, tmp_path):
+        pinnacle = PINNACLE(path=str(tmp_path))
         exp_data = pinnacle.get_exp_data()
         assert isinstance(exp_data, DataFrame)
         assert len(exp_data) > 0, "PINNACLE exp_data is empty"
@@ -104,8 +104,8 @@ class TestPINNACLE(unittest.TestCase):
 
 class TestPharmoneMap(unittest.TestCase):
 
-    def test_get_data(self, tmpdir):
-        resource = PharmoneMap(path=str(tmpdir))
+    def test_get_data(self, tmp_path):
+        resource = PharmoneMap(path=str(tmp_path))
         data = resource.get_data()
         assert isinstance(data, DataFrame), type(data)
         assert "Compound" in data.columns

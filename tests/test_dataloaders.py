@@ -28,17 +28,17 @@ class TestDataloader(unittest.TestCase):
         print(os.getcwd())
         pass
 
-    def test_single_pred(self, tmpdir):
-        data = TestSinglePred(name="Test_Single_Pred", path=str(tmpdir))
+    def test_single_pred(self, tmp_path):
+        data = TestSinglePred(name="Test_Single_Pred", path=str(tmp_path))
         _ = data.get_split()
 
-    def test_multi_pred(self, tmpdir):
-        data = TestMultiPred(name="Test_Multi_Pred", path=str(tmpdir))
+    def test_multi_pred(self, tmp_path):
+        data = TestMultiPred(name="Test_Multi_Pred", path=str(tmp_path))
         _ = data.get_split()
 
-    def test_resource_dataloader(self, tmpdir):
+    def test_resource_dataloader(self, tmp_path):
         dataloader = CellXGene(name="Tabula Sapiens - All Cells",
-                               path=str(tmpdir))
+                               path=str(tmp_path))
         gen = dataloader.get_data(
             value_filter="tissue == 'brain' and sex == 'male'")
         df = next(gen)
@@ -54,10 +54,10 @@ class TestDataloader(unittest.TestCase):
         # assert isinstance(split["test"], DataFrame)
         # assert len(split["test"]) > 0
 
-    def test_cellxgene_list(self, tmpdir):
+    def test_cellxgene_list(self, tmp_path):
         dataloader = CellXGene(
             name=["Tabula Sapiens - Skin", "Tabula Sapiens - Kidney"],
-            path=str(tmpdir))
+            path=str(tmp_path))
         gen = dataloader.get_data(
             value_filter="tissue == 'liver' and sex == 'male'")
         df = next(gen)
@@ -65,10 +65,10 @@ class TestDataloader(unittest.TestCase):
         assert len(df) > 0
         print(df.head())
 
-    def test_brown(self, tmpdir):
+    def test_brown(self, tmp_path):
         # TODO: factor out into specialized test suites for individual datasets
         # this test serves as an integration test of the data processing, data configs, and existing tdc pipeline. leave here for now.
-        data = ProteinPeptide(name="brown_mdm2_ace2_12ca5", path=str(tmpdir))
+        data = ProteinPeptide(name="brown_mdm2_ace2_12ca5", path=str(tmp_path))
         assert "protein_or_rna_sequence" in data.get_data(
         ).columns  # brown protein<>peptide dataset uses a data config inserting this column
         data.get_split()
@@ -76,19 +76,19 @@ class TestDataloader(unittest.TestCase):
     @unittest.skip(
         "test is taking up too much memory"
     )  #FIXME: should probably create much smaller version and use that for the test. This test does pass locally, please rerun if changing anndata code.
-    def test_h5ad_dataloader(self, tmpdir):
+    def test_h5ad_dataloader(self, tmp_path):
         test_loader = PerturbOutcome(
-            name="scperturb_drug_AissaBenevolenskaya2021", path=str(tmpdir))
+            name="scperturb_drug_AissaBenevolenskaya2021", path=str(tmp_path))
         testdf = test_loader.get_data()
         assert isinstance(testdf, DataFrame)
         test_loader.get_split()
 
-    def test_generation(self, tmpdir):
-        data = MolGen(name="ZINC", path=str(tmpdir))
+    def test_generation(self, tmp_path):
+        data = MolGen(name="ZINC", path=str(tmp_path))
         data.get_split()
 
-    def test_resource_dataverse_dataloader(self, tmpdir):
-        data = DataLoader(name="opentargets_dti", path=str(tmpdir))
+    def test_resource_dataverse_dataloader(self, tmp_path):
+        data = DataLoader(name="opentargets_dti", path=str(tmp_path))
         df = data.get_data()
         assert "Y" in df.columns
         split = data.get_split()
@@ -97,8 +97,8 @@ class TestDataloader(unittest.TestCase):
         assert len(split["test"]) > 0
         assert isinstance(split["train"], pd.DataFrame)
 
-    def test_resource_dataverse_dataloader_raw_splits(self, tmpdir):
-        data = DataLoader(name="tchard", path=str(tmpdir))
+    def test_resource_dataverse_dataloader_raw_splits(self, tmp_path):
+        data = DataLoader(name="tchard", path=str(tmp_path))
         df = data.get_data()
         assert isinstance(df, pd.DataFrame)
         assert "Y" in df.columns
@@ -114,11 +114,11 @@ class TestDataloader(unittest.TestCase):
                           pd.DataFrame)
         assert not splits["dev"]
 
-    def test_mpc(self, tmpdir):
+    def test_mpc(self, tmp_path):
         Xs = MPC(
             name=
             "https://raw.githubusercontent.com/bidd-group/MPCD/main/dataset/ADMET/DeepDelta_benchmark/Caco2.csv",
-            path=str(tmpdir))
+            path=str(tmp_path))
         Xs_split = Xs.get_split()
         Xs_train = Xs_split["train"]
         Xs_test = Xs_split["test"]

@@ -22,8 +22,8 @@ class TestHF(unittest.TestCase):
         reason="This test is skipped due to deeppurpose installation dependency"
     )
     @unittest.skip(reason="DeepPurpose")
-    def test_hf_load_predict(self, tmpdir):
-        Tox(name='herg_karim', path=str(tmpdir))
+    def test_hf_load_predict(self, tmp_path):
+        Tox(name='herg_karim', path=str(tmp_path))
 
         tdc_hf = tdc_hf_interface("hERG_Karim-CNN")
         # load deeppurpose model from this repo
