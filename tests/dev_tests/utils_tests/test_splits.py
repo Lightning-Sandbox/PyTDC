@@ -15,23 +15,16 @@ from tdc.single_pred import ADME
 
 class TestFunctions(unittest.TestCase):
 
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
-    def test_random_split(self):
-
-        data = ADME(name="Caco2_Wang")
+    def test_random_split(self, tmpdir):
+        data = ADME(name="Caco2_Wang", path=str(tmpdir))
         data.get_split(method="random")
 
-    def test_scaffold_split(self):
-
-        data = ADME(name="Caco2_Wang")
+    def test_scaffold_split(self, tmpdir):
+        data = ADME(name="Caco2_Wang", path=str(tmpdir))
         data.get_split(method="scaffold")
 
-    def test_cold_start_split(self):
-
-        data = DTI(name="DAVIS")
+    def test_cold_start_split(self, tmpdir):
+        data = DTI(name="DAVIS", path=str(tmpdir))
         split = data.get_split(method="cold_split", column_name="Drug")
 
         self.assertEqual(
@@ -61,16 +54,10 @@ class TestFunctions(unittest.TestCase):
             self.assertEqual(0, len(train_entity.intersection(test_entity)))
             self.assertEqual(0, len(valid_entity.intersection(test_entity)))
 
-    def test_combination_split(self):
-        data = DrugSyn(name="DrugComb")
+    def test_combination_split(self, tmpdir):
+        data = DrugSyn(name="DrugComb", path=str(tmpdir))
         data.get_split(method="combination")
 
-    def test_time_split(self):
-        data = DTI(name="BindingDB_Patent")
+    def test_time_split(self, tmpdir):
+        data = DTI(name="BindingDB_Patent", path=str(tmpdir))
         data.get_split(method="time", time_column="Year")
-
-    def test_tearDown(self):
-        print(os.getcwd())
-
-        if os.path.exists(os.path.join(os.getcwd(), "data")):
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))
