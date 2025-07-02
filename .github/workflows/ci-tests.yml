@@ -28,11 +28,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python version
-        uses: actions/setup-python@v5
+      - name: Install uv and setup python
+        uses: astral-sh/setup-uv@v6
         with:
+          activate-environment: true
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
+          enable-cache: true
+      - name: Install uv python & pip
+        run: uv pip install --python=${{ matrix.python-version }} pip
 
       - name: add old dependencies
         if: ${{ matrix.install-deps == 'old' }}
@@ -40,8 +43,8 @@ jobs:
 
       - name: Install package & dependencies
         run: |
-          pip install . -U -q -r requires_test.txt $OLD_DEPENDENCIES
-          pip list
+          uv pip install . -U -q -r requires_test.txt $OLD_DEPENDENCIES
+          uv pip list
 
       - name: Run tests
         run: pytest tests/ -v --disable-warnings --color=yes -n 1
