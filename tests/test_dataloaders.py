@@ -37,7 +37,8 @@ class TestDataloader(unittest.TestCase):
         _ = data.get_split()
 
     def test_resource_dataloader(self, tmpdir):
-        dataloader = CellXGene(name="Tabula Sapiens - All Cells", path=str(tmpdir))
+        dataloader = CellXGene(name="Tabula Sapiens - All Cells",
+                               path=str(tmpdir))
         gen = dataloader.get_data(
             value_filter="tissue == 'brain' and sex == 'male'")
         df = next(gen)
@@ -56,8 +57,7 @@ class TestDataloader(unittest.TestCase):
     def test_cellxgene_list(self, tmpdir):
         dataloader = CellXGene(
             name=["Tabula Sapiens - Skin", "Tabula Sapiens - Kidney"],
-            path=str(tmpdir)
-        )
+            path=str(tmpdir))
         gen = dataloader.get_data(
             value_filter="tissue == 'liver' and sex == 'male'")
         df = next(gen)
@@ -77,7 +77,8 @@ class TestDataloader(unittest.TestCase):
         "test is taking up too much memory"
     )  #FIXME: should probably create much smaller version and use that for the test. This test does pass locally, please rerun if changing anndata code.
     def test_h5ad_dataloader(self, tmpdir):
-        test_loader = PerturbOutcome(name="scperturb_drug_AissaBenevolenskaya2021", path=str(tmpdir))
+        test_loader = PerturbOutcome(
+            name="scperturb_drug_AissaBenevolenskaya2021", path=str(tmpdir))
         testdf = test_loader.get_data()
         assert isinstance(testdf, DataFrame)
         test_loader.get_split()
@@ -115,9 +116,9 @@ class TestDataloader(unittest.TestCase):
 
     def test_mpc(self, tmpdir):
         Xs = MPC(
-            name="https://raw.githubusercontent.com/bidd-group/MPCD/main/dataset/ADMET/DeepDelta_benchmark/Caco2.csv",
-            path=str(tmpdir)
-        )
+            name=
+            "https://raw.githubusercontent.com/bidd-group/MPCD/main/dataset/ADMET/DeepDelta_benchmark/Caco2.csv",
+            path=str(tmpdir))
         Xs_split = Xs.get_split()
         Xs_train = Xs_split["train"]
         Xs_test = Xs_split["test"]

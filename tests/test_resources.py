@@ -102,7 +102,6 @@ class TestPINNACLE(unittest.TestCase):
         assert len(exp_data) > 0, "PINNACLE exp_data is empty"
 
 
-
 class TestPharmoneMap(unittest.TestCase):
 
     def test_get_data(self, tmpdir):
