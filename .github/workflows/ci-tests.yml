@@ -48,7 +48,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/ -v --disable-warnings --color=yes -n 1 \
+          pytest tests/ -v --disable-warnings --color=yes -n auto \
             --ignore=tests/test_benchmark.py
 
       - name: Run benchmark
