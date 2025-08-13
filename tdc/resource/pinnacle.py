@@ -77,51 +77,49 @@ class PINNACLE:
                 len(df), len(x))
         return df
 
-    def get_exp_data(self, seed=1, split="train"):
+    def get_exp_data(self, seed=1, split="train", path="./data"):
         if split not in ["train", "val", "test"]:
             raise ValueError("{} not a valid split".format(split))
         if seed < 1 or seed > 10:
             raise ValueError(f'{seed} is not a valid seed in range 1-10.')
         filename = "pinnacle_output{}".format(seed)
         # clean data directory
-        file_list = os.listdir("./data")
-        for file in file_list:
+        file_list = os.listdir(path)
+        for fname in file_list:
             try:
-                os.remove(os.path.join("./data", file))
+                os.remove(os.path.join(path, fname))
             except:
                 continue
         print("downloading pinancle zip data...")
         zip_data_download_wrapper(
-            filename, "./data",
+            filename, path,
             ["pinnacle_output{}".format(x) for x in range(1, 11)])
         print("success!")
         # Get non-csv files and remove them
-        non_csv_files = [
-            f for f in os.listdir("./data") if not f.endswith(".csv")
-        ]
+        non_csv_files = [f for f in os.listdir(path) if not f.endswith(".csv")]
         for x in non_csv_files:
             try:
-                os.remove("./data/{}".format(x))
+                os.remove(os.path.join(path, x))
             except:
                 continue
         # Get a list of all CSV files in the unzipped folder
-        csv_files = [f for f in os.listdir("./data") if f.endswith(".csv")]
+        csv_files = [f for f in os.listdir(path) if f.endswith(".csv")]
         if not csv_files:
             raise Exception("no csv")
         x = []
         print("iterating over csv files...")
-        for file in csv_files:
-            print("got file {}".format(file))
-            if "_{}_".format(split) not in file:
-                os.remove("./data/{}".format(file))
+        for fname in csv_files:
+            print("got file {}".format(fname))
+            if "_{}_".format(split) not in fname:
+                os.remove(os.path.join(path, fname))
                 continue
             print("reading into pandas...")
-            df = pd.read_csv("./data/{}".format(file))
-            cell = file.split("_")[-1]
+            df = pd.read_csv(os.path.join(path, fname))
+            cell = fname.split("_")[-1]
             cell = cell.split(".")[0]
             df["cell_type_label"] = cell
-            disease = "IBD" if "3767" in file else "RA"
+            disease = "IBD" if "3767" in fname else "RA"
             df["disease"] = disease
             x.append(df)
-            os.remove("./data/{}".format(file))
+            os.remove(os.path.join(path, fname))
         return pd.concat(x, axis=0, ignore_index=True)

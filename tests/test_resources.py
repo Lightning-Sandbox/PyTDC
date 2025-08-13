@@ -97,7 +97,7 @@ class TestPINNACLE:
 
     def test_exp_data(self, tmp_path):
         pinnacle = PINNACLE(path=str(tmp_path))
-        exp_data = pinnacle.get_exp_data()
+        exp_data = pinnacle.get_exp_data(path=tmp_path)
         assert isinstance(exp_data, DataFrame)
         assert len(exp_data) > 0, "PINNACLE exp_data is empty"
 
