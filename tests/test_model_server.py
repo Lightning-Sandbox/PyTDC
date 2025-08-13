@@ -189,4 +189,3 @@ class TestModelServer:
         model = scvi.load()
         output = model(adata)
         print(f"scVI ran successfully. here is an ouput: {output}")
-
