@@ -14,7 +14,7 @@ from tdc.feature_generators.data_feature_generator import DataFeatureGenerator
 from tdc.feature_generators.protein_feature_generator import ProteinFeatureGenerator
 
 
-class TestDataFeatureGenerator(TestCase):
+class TestDataFeatureGenerator:
 
     def testAutofill(self):
         test_entries = [[0, "x", 8], [1, 'y', 4], [None, "x", 9],
@@ -114,7 +114,7 @@ class TestDataFeatureGenerator(TestCase):
             shutil.rmtree(os.path.join(os.getcwd(), "oracle"))
 
 
-class TestProteinDataUtil(unittest.TestCase):
+class TestProteinDataUtil:
 
     def testInsertProteinSequence(self):
         test_entries = [
