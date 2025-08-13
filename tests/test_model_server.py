@@ -25,10 +25,7 @@ def quant_layers(model):
     return int(max(layer_nums)) + 1
 
 
-class TestModelServer(unittest.TestCase):
-
-    def setUp(self):
-        self.resource = cellxgene_census.CensusResource()
+class TestModelServer:
 
     def testscGPT(self):
         adata = DataLoader("cellxgene_sample_small",
@@ -50,9 +47,9 @@ class TestModelServer(unittest.TestCase):
                             attention_mask=mask)
         print(f"scgpt ran successfully. here is an output {first_embed}")
 
-    def testGeneformerPerturb(self):
+    def testGeneformerPerturb(self, tmp_path):
         dataset = "scperturb_drug_AissaBenevolenskaya2021"
-        data = PerturbOutcome(dataset)
+        data = PerturbOutcome(dataset, path=str(tmp_path))
         adata = data.adata
         tokenizer = GeneformerTokenizer(max_input_size=3)
         adata.var["feature_id"] = adata.var.index.map(
@@ -96,7 +93,8 @@ class TestModelServer(unittest.TestCase):
         assert num_gene_out_in_batch == mdim, f"FAILURE: out length {num_gene_out_in_batch} doesn't match gene length {mdim}"
 
     def testGeneformerTokenizer(self):
-        adata = self.resource.get_anndata(
+        resource = cellxgene_census.CensusResource()
+        adata = resource.get_anndata(
             var_value_filter=
             "feature_id in ['ENSG00000161798', 'ENSG00000188229']",
             obs_value_filter=
@@ -192,9 +190,3 @@ class TestModelServer(unittest.TestCase):
         output = model(adata)
         print(f"scVI ran successfully. here is an ouput: {output}")
 
-    def tearDown(self):
-        try:
-            print(os.getcwd())
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))
-        except:
-            pass

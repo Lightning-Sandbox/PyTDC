@@ -67,8 +67,8 @@ class TestBenchmarkGroup(TestCase):
         for my_group in self.group:
             self.assertTrue(my_group["name"] in results)
 
-    def test_SCDTI_benchmark(self):
-        group = scdti_group.SCDTIGroup()
+    def test_SCDTI_benchmark(self, tmp_path):
+        group = scdti_group.SCDTIGroup(path=tmp_path)
         train_val = group.get_train_valid_split(seed=random.randint(0, 10))
         assert "train" in train_val, "no training set"
         assert "val" in train_val, "no validation set"
@@ -148,8 +148,8 @@ class TestBenchmarkGroup(TestCase):
         group.get_train_valid_split()
         group.get_test()
 
-    @unittest.skip(
-        "mygene dependency removal")  #FIXME: separate into conda-only tests
+    # FIXME: separate into conda-only tests
+    @unittest.skip("mygene dependency removal")
     def test_proteinpeptide(self):
         group = ProteinPeptideGroup()
         test = group.get_test()
@@ -174,9 +174,9 @@ class TestBenchmarkGroup(TestCase):
         res = group.evaluate(y_test)
         assert res[-1] == 1 and res[-2] == 1, res
 
-    def test_tcrepitope(self):
-        data = DataLoader("tchard")
+    def test_tcrepitope(self, tmp_path):
+        data = DataLoader("tchard", path=str(tmp_path))
         tst = data.get_split()["test"]
-        group = TCREpitopeGroup()
+        group = TCREpitopeGroup(path=str(tmp_path))
         res = group.evaluate(tst)
         assert res == 1
