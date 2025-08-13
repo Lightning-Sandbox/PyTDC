@@ -47,4 +47,4 @@ jobs:
           uv pip list
 
       - name: Run tests
-        run: pytest tests/ -v --disable-warnings --color=yes -n 1
+        run: pytest tests/ -v --disable-warnings --color=yes -n auto
