@@ -22,7 +22,7 @@ def is_classification(values):
     return False
 
 
-class TestBenchmarkGroup(TestCase):
+class TestBenchmarkGroup():
 
     def setUp(self):
         self.group = admet_group(path="data/")
@@ -30,42 +30,43 @@ class TestBenchmarkGroup(TestCase):
     def tearDown(self) -> None:
         shutil.rmtree("data", ignore_errors=True)
 
-    def test_ADME_mean_prediction(self):
+    def test_ADME_mean_prediction(self, tmp_path):
+        group = admet_group(path=tmp_path)
         predictions = {}
         num_datasets = 0
-        for my_group in self.group:
+        for my_group in group:
             num_datasets += 1
             name = my_group["name"]
             test = my_group["test"]
             mean_val = np.mean(test["Y"])
             predictions[name] = [mean_val] * len(test)
 
-        results = self.group.evaluate(predictions)
-        self.assertEqual(num_datasets, len(results))
-        for my_group in self.group:
-            self.assertTrue(my_group["name"] in results)
+        results = group.evaluate(predictions)
+        assert num_datasets == len(results)
+        for my_group in group:
+            assert my_group["name"] in results
 
-    def test_ADME_evaluate_many(self):
+    def test_ADME_evaluate_many(self, tmp_path):
+        group = admet_group(path=tmp_path)
         prediction_list = []
         for random_seed in range(5):
             predictions = {}
-            for my_group in self.group:
+            for my_group in group:
                 name = my_group["name"]
                 test = my_group["test"]
                 predictions[name] = test["Y"]
             prediction_list.append(predictions)
 
-        results = self.group.evaluate_many(prediction_list)
+        results = group.evaluate_many(prediction_list)
         for ds_name, metrics in results.items():
-            self.assertEqual(len(metrics), 2)
+            assert len(metrics) == 2
             u, std = metrics
-            self.assertTrue(u
-                            in (1,
-                                0))  # A perfect score for all metrics is 1 or 0
-            self.assertEqual(0, std)
+            # A perfect score for all metrics is 1 or 0
+            assert u in (1, 0)
+            assert 0 == std
 
-        for my_group in self.group:
-            self.assertTrue(my_group["name"] in results)
+        for my_group in group:
+            assert my_group["name"] in results
 
     def test_SCDTI_benchmark(self, tmp_path):
         group = scdti_group.SCDTIGroup(path=tmp_path)
