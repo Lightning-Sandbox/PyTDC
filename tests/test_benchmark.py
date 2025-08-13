@@ -4,6 +4,7 @@ import unittest
 
 import numpy as np
 from sklearn.model_selection import train_test_split
+from unittest import TestCase
 
 from tdc.benchmark_group import admet_group, scdti_group, counterfactual_group, geneperturb_group
 from tdc.benchmark_group.protein_peptide_group import ProteinPeptideGroup
@@ -21,7 +22,7 @@ def is_classification(values):
     return False
 
 
-class TestBenchmarkGroup(unittest.TestCase):
+class TestBenchmarkGroup(TestCase):
 
     def setUp(self):
         self.group = admet_group(path="data/")

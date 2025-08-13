@@ -8,12 +8,13 @@ import shutil
 import unittest
 
 import pandas as pd
+from unittest import TestCase
 
 from tdc.feature_generators.data_feature_generator import DataFeatureGenerator
 from tdc.feature_generators.protein_feature_generator import ProteinFeatureGenerator
 
 
-class TestDataFeatureGenerator(unittest.TestCase):
+class TestDataFeatureGenerator(TestCase):
 
     def testAutofill(self):
         test_entries = [[0, "x", 8], [1, 'y', 4], [None, "x", 9],
