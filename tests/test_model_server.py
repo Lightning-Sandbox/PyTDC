@@ -37,8 +37,9 @@ class TestModelServer:
         tokenizer = scGPTTokenizer()
         gene_ids = adata.var["feature_name"].to_numpy(
         )  # Convert to numpy array
-        tokenized_data = tokenizer.tokenize_cell_vectors(
-            adata.X.toarray(), gene_ids, path=tmp_path)
+        tokenized_data = tokenizer.tokenize_cell_vectors(adata.X.toarray(),
+                                                         gene_ids,
+                                                         path=tmp_path)
         mask = torch.tensor([x != 0 for x in tokenized_data[0][1]],
                             dtype=torch.bool)
         assert sum(mask) != 0, "FAILURE: mask is empty"
