@@ -18,7 +18,7 @@ class SCDTIGroup(BenchmarkGroup):
         """Create an SCDTI benchmark group class."""
         self.name = "SCDTI_Group"
         self.path = os.path.join(path, self.name)
-        self.p = PINNACLE()
+        self.p = PINNACLE(path=self.path)
 
     def precision_recall_at_k(self, y, preds, k: int = 5):
         """
@@ -54,12 +54,14 @@ class SCDTIGroup(BenchmarkGroup):
 
     def get_train_valid_split(self, seed=1):
         """parameters included for compatibility. this benchmark has a fixed train/test split."""
-        train = self.p.get_exp_data(seed=seed, split="train")
-        val = self.p.get_exp_data(seed=seed, split="val")
+        train = self.p.get_exp_data(seed=seed, split="train", path=self.path)
+        val = self.p.get_exp_data(seed=seed, split="val", path=self.path)
         return {"train": train, "val": val}
 
     def get_test(self, seed=1):
-        return {"test": self.p.get_exp_data(seed=seed, split="test")}
+        return {
+            "test": self.p.get_exp_data(seed=seed, split="test", path=self.path)
+        }
 
     def evaluate(self, y_pred, k=5, top_k=20, seed=1):
         from numpy import mean

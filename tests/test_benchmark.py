@@ -1,8 +1,10 @@
+import random
 import shutil
 import unittest
 
 import numpy as np
 from sklearn.model_selection import train_test_split
+from unittest import TestCase
 
 from tdc.benchmark_group import admet_group, scdti_group, counterfactual_group, geneperturb_group
 from tdc.benchmark_group.protein_peptide_group import ProteinPeptideGroup
@@ -20,54 +22,49 @@ def is_classification(values):
     return False
 
 
-class TestBenchmarkGroup(unittest.TestCase):
+class TestBenchmarkGroup:
 
-    def setUp(self):
-        self.group = admet_group(path="data/")
-
-    def tearDown(self) -> None:
-        shutil.rmtree("data", ignore_errors=True)
-
-    def test_ADME_mean_prediction(self):
+    def test_ADME_mean_prediction(self, tmp_path):
+        group = admet_group(path=tmp_path)
         predictions = {}
         num_datasets = 0
-        for my_group in self.group:
+        for my_group in group:
             num_datasets += 1
             name = my_group["name"]
             test = my_group["test"]
             mean_val = np.mean(test["Y"])
             predictions[name] = [mean_val] * len(test)
 
-        results = self.group.evaluate(predictions)
-        self.assertEqual(num_datasets, len(results))
-        for my_group in self.group:
-            self.assertTrue(my_group["name"] in results)
+        results = group.evaluate(predictions)
+        assert num_datasets == len(results)
+        for my_group in group:
+            assert my_group["name"] in results
 
-    def test_ADME_evaluate_many(self):
+    def test_ADME_evaluate_many(self, tmp_path):
+        group = admet_group(path=tmp_path)
         prediction_list = []
         for random_seed in range(5):
             predictions = {}
-            for my_group in self.group:
+            for my_group in group:
                 name = my_group["name"]
                 test = my_group["test"]
                 predictions[name] = test["Y"]
             prediction_list.append(predictions)
 
-        results = self.group.evaluate_many(prediction_list)
+        results = group.evaluate_many(prediction_list)
         for ds_name, metrics in results.items():
-            self.assertEqual(len(metrics), 2)
+            assert len(metrics) == 2
             u, std = metrics
-            self.assertTrue(u
-                            in (1,
-                                0))  # A perfect score for all metrics is 1 or 0
-            self.assertEqual(0, std)
+            # A perfect score for all metrics is 1 or 0
+            assert u in (1, 0)
+            assert 0 == std
 
-        for my_group in self.group:
-            self.assertTrue(my_group["name"] in results)
+        for my_group in group:
+            assert my_group["name"] in results
 
-    def test_SCDTI_benchmark(self):
-        group = scdti_group.SCDTIGroup()
-        train_val = group.get_train_valid_split()
+    def test_SCDTI_benchmark(self, tmp_path):
+        group = scdti_group.SCDTIGroup(path=tmp_path)
+        train_val = group.get_train_valid_split(seed=random.randint(1, 10))
         assert "train" in train_val, "no training set"
         assert "val" in train_val, "no validation set"
         assert len(train_val["train"]) > 0, "no entries in training set"
@@ -146,8 +143,8 @@ class TestBenchmarkGroup(unittest.TestCase):
         group.get_train_valid_split()
         group.get_test()
 
-    @unittest.skip(
-        "mygene dependency removal")  #FIXME: separate into conda-only tests
+    # FIXME: separate into conda-only tests
+    @unittest.skip("mygene dependency removal")
     def test_proteinpeptide(self):
         group = ProteinPeptideGroup()
         test = group.get_test()
@@ -172,9 +169,9 @@ class TestBenchmarkGroup(unittest.TestCase):
         res = group.evaluate(y_test)
         assert res[-1] == 1 and res[-2] == 1, res
 
-    def test_tcrepitope(self):
-        data = DataLoader("tchard")
+    def test_tcrepitope(self, tmp_path):
+        data = DataLoader("tchard", path=str(tmp_path))
         tst = data.get_split()["test"]
-        group = TCREpitopeGroup()
+        group = TCREpitopeGroup(path=str(tmp_path))
         res = group.evaluate(tst)
         assert res == 1

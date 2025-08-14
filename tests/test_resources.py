@@ -1,5 +1,4 @@
 import os
-import shutil
 import unittest
 
 from pandas import DataFrame
@@ -8,10 +7,6 @@ from tdc.resource import PrimeKG
 from tdc.resource import cellxgene_census
 from tdc.resource.pharmone import PharmoneMap
 from tdc.resource.pinnacle import PINNACLE
-
-
-class TestResources(unittest.TestCase):
-    pass
 
 
 class TestCellXGene(unittest.TestCase):
@@ -57,28 +52,20 @@ class TestCellXGene(unittest.TestCase):
         print("f", FMslice)
 
 
-class TestPrimeKG(unittest.TestCase):
+class TestPrimeKG:
 
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
-    def test_node_retrieval(self):
-        data = PrimeKG(path='./data')
+    def test_node_retrieval(self, tmp_path):
+        data = PrimeKG(path=str(tmp_path))
         drug_feature = data.get_features(feature_type='drug')
         data.to_nx()
         l = data.get_node_list('disease')
         assert "1" in l and "9997" in l
 
 
-class TestPINNACLE(unittest.TestCase):
+class TestPINNACLE:
 
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
-    def test_mg_ppi_load(self):
-        pinnacle = PINNACLE()
+    def test_mg_ppi_load(self, tmp_path):
+        pinnacle = PINNACLE(path=str(tmp_path))
         assert isinstance(pinnacle.get_ppi(), DataFrame)
         assert isinstance(pinnacle.get_mg(), DataFrame)
         assert len(pinnacle.get_ppi()) > 0
@@ -87,8 +74,8 @@ class TestPINNACLE(unittest.TestCase):
         assert isinstance(embeds, DataFrame)
         assert len(embeds) > 0, "PINNACLE embeds is empty"
 
-    def test_embeddings(self):
-        pinnacle = PINNACLE()
+    def test_embeddings(self, tmp_path):
+        pinnacle = PINNACLE(path=str(tmp_path))
         embeds = pinnacle.get_embeds()
         assert isinstance(embeds, DataFrame)
         assert len(embeds) > 0, "PINNACLE embeds is empty"
@@ -108,37 +95,19 @@ class TestPINNACLE(unittest.TestCase):
         assert len(set(cells)) == num_cells, "{} vs {} for cell_types".format(
             len(cells), num_cells)
 
-    def test_exp_data(self):
-        pinnacle = PINNACLE()
-        exp_data = pinnacle.get_exp_data()
+    def test_exp_data(self, tmp_path):
+        pinnacle = PINNACLE(path=str(tmp_path))
+        exp_data = pinnacle.get_exp_data(path=tmp_path)
         assert isinstance(exp_data, DataFrame)
         assert len(exp_data) > 0, "PINNACLE exp_data is empty"
 
-    def tearDown(self):
-        try:
-            print(os.getcwd())
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))
-        except:
-            pass
 
+class TestPharmoneMap:
 
-class TestPharmoneMap(unittest.TestCase):
-
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
-    def test_get_data(self):
-        resource = PharmoneMap()
+    def test_get_data(self, tmp_path):
+        resource = PharmoneMap(path=str(tmp_path))
         data = resource.get_data()
         assert isinstance(data, DataFrame), type(data)
         assert "Compound" in data.columns
         assert "Target_ID" in data.columns
         assert "pXC50" in data.columns
-
-    def tearDown(self):
-        try:
-            print(os.getcwd())
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))
-        except:
-            pass

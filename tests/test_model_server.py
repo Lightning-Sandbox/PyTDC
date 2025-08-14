@@ -25,15 +25,11 @@ def quant_layers(model):
     return int(max(layer_nums)) + 1
 
 
-class TestModelServer(unittest.TestCase):
+class TestModelServer:
 
-    def setUp(self):
-        print(os.getcwd())
-        self.resource = cellxgene_census.CensusResource()
-
-    def testscGPT(self):
+    def testscGPT(self, tmp_path):
         adata = DataLoader("cellxgene_sample_small",
-                           "./data",
+                           tmp_path,
                            dataset_names=["cellxgene_sample_small"],
                            no_convert=True).adata
         scgpt = tdc_hf_interface("scGPT")
@@ -41,8 +37,9 @@ class TestModelServer(unittest.TestCase):
         tokenizer = scGPTTokenizer()
         gene_ids = adata.var["feature_name"].to_numpy(
         )  # Convert to numpy array
-        tokenized_data = tokenizer.tokenize_cell_vectors(
-            adata.X.toarray(), gene_ids)
+        tokenized_data = tokenizer.tokenize_cell_vectors(adata.X.toarray(),
+                                                         gene_ids,
+                                                         path=tmp_path)
         mask = torch.tensor([x != 0 for x in tokenized_data[0][1]],
                             dtype=torch.bool)
         assert sum(mask) != 0, "FAILURE: mask is empty"
@@ -51,9 +48,9 @@ class TestModelServer(unittest.TestCase):
                             attention_mask=mask)
         print(f"scgpt ran successfully. here is an output {first_embed}")
 
-    def testGeneformerPerturb(self):
+    def testGeneformerPerturb(self, tmp_path):
         dataset = "scperturb_drug_AissaBenevolenskaya2021"
-        data = PerturbOutcome(dataset)
+        data = PerturbOutcome(dataset, path=str(tmp_path))
         adata = data.adata
         tokenizer = GeneformerTokenizer(max_input_size=3)
         adata.var["feature_id"] = adata.var.index.map(
@@ -97,7 +94,8 @@ class TestModelServer(unittest.TestCase):
         assert num_gene_out_in_batch == mdim, f"FAILURE: out length {num_gene_out_in_batch} doesn't match gene length {mdim}"
 
     def testGeneformerTokenizer(self):
-        adata = self.resource.get_anndata(
+        resource = cellxgene_census.CensusResource()
+        adata = resource.get_anndata(
             var_value_filter=
             "feature_id in ['ENSG00000161798', 'ENSG00000188229']",
             obs_value_filter=
@@ -182,9 +180,9 @@ class TestModelServer(unittest.TestCase):
             "Geneformer ran sucessfully. Find batch embedding example here:\n {}"
             .format(out[0]))
 
-    def testscVI(self):
+    def testscVI(self, tmp_path):
         adata = DataLoader("scvi_test_dataset",
-                           "./data",
+                           tmp_path,
                            dataset_names=["scvi_test_dataset"],
                            no_convert=True).adata
 
@@ -192,10 +190,3 @@ class TestModelServer(unittest.TestCase):
         model = scvi.load()
         output = model(adata)
         print(f"scVI ran successfully. here is an ouput: {output}")
-
-    def tearDown(self):
-        try:
-            print(os.getcwd())
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))
-        except:
-            pass

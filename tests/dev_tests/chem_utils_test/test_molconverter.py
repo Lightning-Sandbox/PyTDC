@@ -10,11 +10,7 @@ import unittest
 from tdc.chem_utils import MolConvert
 
 
-class TestMolConvert(unittest.TestCase):
-
-    def setUp(self):
-        print(os.getcwd())
-        pass
+class TestMolConvert:
 
     def test_MolConvert(self):
         converter = MolConvert(src="SMILES", dst="Graph2D")
@@ -24,9 +20,3 @@ class TestMolConvert(unittest.TestCase):
         ])
 
         MolConvert.eligible_format()
-
-    def tearDown(self):
-        print(os.getcwd())
-
-        if os.path.exists(os.path.join(os.getcwd(), "data")):
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))
