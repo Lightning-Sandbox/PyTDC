@@ -3,7 +3,6 @@
 from __future__ import division
 from __future__ import print_function
 
-import os
 import unittest
 
 import pytest
@@ -16,6 +15,10 @@ from tdc import Oracle
 @pytest.mark.xfail(raises=ImportError,
                    reason="Oracle supports only old SKLearn version")
 class TestOracle(unittest.TestCase):
+
+    # def setUp(self):
+    #     print(os.getcwd())
+    #     pass
 
     def test_gsk3b(self):
         oracle = Oracle(name='GSK3B')

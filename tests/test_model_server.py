@@ -27,9 +27,9 @@ def quant_layers(model):
 
 class TestModelServer:
 
-    def testscGPT(self):
+    def testscGPT(self, tmp_path):
         adata = DataLoader("cellxgene_sample_small",
-                           "./data",
+                           tmp_path,
                            dataset_names=["cellxgene_sample_small"],
                            no_convert=True).adata
         scgpt = tdc_hf_interface("scGPT")
@@ -37,8 +37,9 @@ class TestModelServer:
         tokenizer = scGPTTokenizer()
         gene_ids = adata.var["feature_name"].to_numpy(
         )  # Convert to numpy array
-        tokenized_data = tokenizer.tokenize_cell_vectors(
-            adata.X.toarray(), gene_ids)
+        tokenized_data = tokenizer.tokenize_cell_vectors(adata.X.toarray(),
+                                                         gene_ids,
+                                                         path=tmp_path)
         mask = torch.tensor([x != 0 for x in tokenized_data[0][1]],
                             dtype=torch.bool)
         assert sum(mask) != 0, "FAILURE: mask is empty"
@@ -179,9 +180,9 @@ class TestModelServer:
             "Geneformer ran sucessfully. Find batch embedding example here:\n {}"
             .format(out[0]))
 
-    def testscVI(self):
+    def testscVI(self, tmp_path):
         adata = DataLoader("scvi_test_dataset",
-                           "./data",
+                           tmp_path,
                            dataset_names=["scvi_test_dataset"],
                            no_convert=True).adata
 

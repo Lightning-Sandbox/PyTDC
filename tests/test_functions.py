@@ -3,8 +3,6 @@
 from __future__ import division
 from __future__ import print_function
 
-import unittest
-
 from tdc import Evaluator
 from tdc.single_pred import TestSinglePred
 

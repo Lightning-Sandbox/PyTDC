@@ -22,13 +22,7 @@ def is_classification(values):
     return False
 
 
-class TestBenchmarkGroup():
-
-    def setUp(self):
-        self.group = admet_group(path="data/")
-
-    def tearDown(self) -> None:
-        shutil.rmtree("data", ignore_errors=True)
+class TestBenchmarkGroup:
 
     def test_ADME_mean_prediction(self, tmp_path):
         group = admet_group(path=tmp_path)
