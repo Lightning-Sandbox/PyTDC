@@ -3,7 +3,6 @@
 from __future__ import division
 from __future__ import print_function
 
-
 from tdc.multi_pred import DTI
 from tdc.multi_pred import DrugSyn
 ## requires RDKit
