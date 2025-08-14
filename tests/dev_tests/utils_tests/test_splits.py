@@ -3,9 +3,6 @@
 from __future__ import division
 from __future__ import print_function
 
-import os
-import shutil
-import unittest
 
 from tdc.multi_pred import DTI
 from tdc.multi_pred import DrugSyn
@@ -13,43 +10,26 @@ from tdc.multi_pred import DrugSyn
 from tdc.single_pred import ADME
 
 
-class TestFunctions(unittest.TestCase):
+class TestFunctions:
 
-    def setUp(self):
-        print(os.getcwd())
-        pass
-
-    def test_random_split(self):
-
-        data = ADME(name="Caco2_Wang")
+    def test_random_split(self, tmp_path):
+        data = ADME(name="Caco2_Wang", path=str(tmp_path))
         data.get_split(method="random")
 
-    def test_scaffold_split(self):
-
-        data = ADME(name="Caco2_Wang")
+    def test_scaffold_split(self, tmp_path):
+        data = ADME(name="Caco2_Wang", path=str(tmp_path))
         data.get_split(method="scaffold")
 
-    def test_cold_start_split(self):
-
-        data = DTI(name="DAVIS")
+    def test_cold_start_split(self, tmp_path):
+        data = DTI(name="DAVIS", path=str(tmp_path))
         split = data.get_split(method="cold_split", column_name="Drug")
 
-        self.assertEqual(
-            0,
-            len(
-                set(split["train"]["Drug"]).intersection(
-                    set(split["test"]["Drug"]))))
-        self.assertEqual(
-            0,
-            len(
-                set(split["valid"]["Drug"]).intersection(
-                    set(split["test"]["Drug"]))))
-        self.assertEqual(
-            0,
-            len(
-                set(split["train"]["Drug"]).intersection(
-                    set(split["valid"]["Drug"]))),
-        )
+        set_train = set(split["train"]["Drug"])
+        set_valid = set(split["valid"]["Drug"])
+        set_test = set(split["test"]["Drug"])
+        assert len(set_train.intersection(set_test)) == 0
+        assert len(set_valid.intersection(set_test)) == 0
+        assert len(set_train.intersection(set_valid)) == 0
 
         multi_split = data.get_split(method="cold_split",
                                      column_name=["Drug_ID", "Target_ID"])
@@ -57,20 +37,14 @@ class TestFunctions(unittest.TestCase):
             train_entity = set(multi_split["train"][entity])
             valid_entity = set(multi_split["valid"][entity])
             test_entity = set(multi_split["test"][entity])
-            self.assertEqual(0, len(train_entity.intersection(valid_entity)))
-            self.assertEqual(0, len(train_entity.intersection(test_entity)))
-            self.assertEqual(0, len(valid_entity.intersection(test_entity)))
+            assert 0 == len(train_entity.intersection(valid_entity))
+            assert 0 == len(train_entity.intersection(test_entity))
+            assert 0 == len(valid_entity.intersection(test_entity))
 
-    def test_combination_split(self):
-        data = DrugSyn(name="DrugComb")
+    def test_combination_split(self, tmp_path):
+        data = DrugSyn(name="DrugComb", path=str(tmp_path))
         data.get_split(method="combination")
 
-    def test_time_split(self):
-        data = DTI(name="BindingDB_Patent")
+    def test_time_split(self, tmp_path):
+        data = DTI(name="BindingDB_Patent", path=str(tmp_path))
         data.get_split(method="time", time_column="Year")
-
-    def test_tearDown(self):
-        print(os.getcwd())
-
-        if os.path.exists(os.path.join(os.getcwd(), "data")):
-            shutil.rmtree(os.path.join(os.getcwd(), "data"))

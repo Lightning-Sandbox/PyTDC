@@ -144,7 +144,6 @@ class CensusResource:
         with cellxgene_census.open_soma(
                 census_version=self.census_version) as census:
             obs = census[self.dataset][self.organism].obs
-            obsread = None
             if column_names:
                 obsread = obs.read(value_filter=value_filter,
                                    column_names=column_names)
@@ -169,7 +168,6 @@ class CensusResource:
         with cellxgene_census.open_soma(
                 census_version=self.census_version) as census:
             var = census[self.dataset][self.organism].ms[measurement_name].var
-            varread = None
             if column_names:
                 varread = var.read(value_filter=value_filter,
                                    column_names=column_names)
