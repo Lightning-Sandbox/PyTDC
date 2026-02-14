@@ -48,10 +48,10 @@ class MolFilter:
         try:
             from rd_filters.rd_filters import RDFilters, read_rules
         except ImportError:
-            install("git+https://github.com/PatWalters/rd_filters.git")
+            install("git+https://github.com/bhimrazy/rd_filters.git@fix-pkg-resources")
             from rd_filters.rd_filters import RDFilters, read_rules
 
-        import pkg_resources
+        from importlib.resources import files
 
         self.property_filters_flag = property_filters_flag
         all_filters = [
@@ -78,10 +78,8 @@ class MolFilter:
                             " not found; Please choose from a list of available filters from 'BMS', 'Dundee', 'Glaxo', 'Inpharmatica', 'LINT', 'MLSMR', 'PAINS', 'SureChEMBL'"
                         )
 
-        alert_file_name = pkg_resources.resource_filename(
-            "rd_filters", "data/alert_collection.csv")
-        rules_file_path = pkg_resources.resource_filename(
-            "rd_filters", "data/rules.json")
+        alert_file_name = str(files("rd_filters") / "data/alert_collection.csv")
+        rules_file_path = str(files("rd_filters") / "data/rules.json")
         self.rf = RDFilters(alert_file_name)
         self.rule_dict = read_rules(rules_file_path)
         self.rule_dict["Rule_Inpharmatica"] = False
