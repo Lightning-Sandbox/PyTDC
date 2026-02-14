@@ -1,7 +1,7 @@
 import warnings
 
 import numpy as np
-import pkg_resources
+from importlib.metadata import version as get_version
 from packaging import version
 
 warnings.filterwarnings("ignore")
@@ -17,7 +17,7 @@ from .metadata import (
 )
 
 SKLEARN_VERSION = version.parse(
-    pkg_resources.get_distribution("scikit-learn").version)
+    get_version("scikit-learn"))
 
 
 def _normalize_docking_score(raw_score):
