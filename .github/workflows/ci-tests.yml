@@ -18,17 +18,17 @@ jobs:
         fail-fast: false
         matrix:
             os: ["ubuntu-22.04", "macOS-14"]  # todo , "windows-2022"
-            python-version: ["3.9", "3.11"]
+            python-version: ["3.10", "3.11"]
             install-deps: ["new"]
             include:
-              - { os: "ubuntu-22.04", python-version: "3.9", install-deps: "old" }
+              - { os: "ubuntu-22.04", python-version: "3.10", install-deps: "old" }
     defaults:
       run:
         shell: bash
     steps:
       - uses: actions/checkout@v5
 
-      - name: Install uv and setup python
+      - name: Install uv and setup python ${{ matrix.python-version }}
         uses: astral-sh/setup-uv@v6
         with:
           activate-environment: true
