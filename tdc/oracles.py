@@ -16,8 +16,7 @@ from .metadata import (
     docking_target_info,
 )
 
-SKLEARN_VERSION = version.parse(
-    get_version("scikit-learn"))
+SKLEARN_VERSION = version.parse(get_version("scikit-learn"))
 
 
 def _normalize_docking_score(raw_score):
