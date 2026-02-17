@@ -59,7 +59,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cellxgene-census-
 
-      # Note: macOS-specific optimizations (TileDB S3 config, thread limits) are applied
-      # automatically via tests/conftest.py when pytest runs on macOS
+      # macOS-specific optimizations for performance
+      # TileDB S3 config and thread limits to address 3x slower test performance
+      - name: Set macOS environment variables
+        if: runner.os == 'macOS'
+        run: |
+          echo "TILEDB_VFS_S3_REGION=us-west-2" >> $GITHUB_ENV
+          echo "TILEDB_VFS_S3_MULTIPART_PART_SIZE=52428800" >> $GITHUB_ENV
+          echo "TILEDB_VFS_S3_MAX_PARALLEL_OPS=16" >> $GITHUB_ENV
+          echo "TILEDB_VFS_S3_USE_VIRTUAL_ADDRESSING=true" >> $GITHUB_ENV
+          echo "OMP_NUM_THREADS=4" >> $GITHUB_ENV
+          echo "OPENBLAS_NUM_THREADS=4" >> $GITHUB_ENV
+          echo "MKL_NUM_THREADS=4" >> $GITHUB_ENV
+          echo "VECLIB_MAXIMUM_THREADS=4" >> $GITHUB_ENV
+          echo "NUMEXPR_NUM_THREADS=4" >> $GITHUB_ENV
+
       - name: Run tests
         run: pytest tests/ -v --disable-warnings --color=yes
