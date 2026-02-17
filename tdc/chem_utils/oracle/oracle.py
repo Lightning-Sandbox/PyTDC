@@ -24,7 +24,7 @@ try:
     from six import iteritems
 except:
     raise ImportError(
-        "Please install rdkit by 'conda install -c conda-forge rdkit'! ")
+        "Please install the required packages (e.g., 'conda install -c conda-forge rdkit' and 'pip install six').")
 
 try:
     from scipy.stats.mstats import gmean
