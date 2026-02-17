@@ -49,7 +49,7 @@ class MolFilter:
             from rd_filters.rd_filters import RDFilters, read_rules
         except ImportError:
             install(
-                "git+https://github.com/bhimrazy/rd_filters.git@fix-pkg-resources"
+                "git+https://github.com/PatWalters/rd_filters.git"
             )
             from rd_filters.rd_filters import RDFilters, read_rules
 
