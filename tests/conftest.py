@@ -13,18 +13,31 @@ import pytest
 
 
 @pytest.fixture(scope="session", autouse=True)
-def cleanup_shared_directories():
+def cleanup_shared_directories(tmp_path_factory):
     """
     Clean up shared ./data and ./oracle directories before test session starts.
     
     This fixture runs automatically before any tests to ensure a clean state,
     preventing race conditions when tests run in parallel with pytest-xdist.
+    
+    With pytest-xdist, session-scoped fixtures run once per worker process,
+    but since all workers share the same working directory, we need to be
+    careful about race conditions. The --dist=loadfile strategy helps by
+    grouping tests by file to the same worker.
     """
+    # Get the root directory where tests are run from
+    root_dir = os.getcwd()
+    
     # Clean up before tests start
     for directory in ["data", "oracle"]:
-        dir_path = os.path.join(os.getcwd(), directory)
+        dir_path = os.path.join(root_dir, directory)
         if os.path.exists(dir_path):
-            shutil.rmtree(dir_path)
+            try:
+                shutil.rmtree(dir_path)
+            except (OSError, FileNotFoundError):
+                # Directory might have been removed by another worker or doesn't exist
+                # This is okay, we just want to ensure it's clean
+                pass
     
     # Let tests run
     yield
@@ -32,6 +45,10 @@ def cleanup_shared_directories():
     # Optional: Clean up after tests complete
     # Commented out to allow inspection of test artifacts
     # for directory in ["data", "oracle"]:
-    #     dir_path = os.path.join(os.getcwd(), directory)
+    #     dir_path = os.path.join(root_dir, directory)
     #     if os.path.exists(dir_path):
-    #         shutil.rmtree(dir_path)
+    #         try:
+    #             shutil.rmtree(dir_path)
+    #         except (OSError, FileNotFoundError):
+    #             pass
+
