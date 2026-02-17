@@ -13,7 +13,7 @@ import pytest
 
 
 @pytest.fixture(scope="session", autouse=True)
-def cleanup_shared_directories(tmp_path_factory):
+def cleanup_shared_directories():
     """
     Clean up shared ./data and ./oracle directories before test session starts.
     
