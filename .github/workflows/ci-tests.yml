@@ -60,4 +60,4 @@ jobs:
             ${{ runner.os }}-py-${{ matrix.python-version }}-cellxgene-census-
 
       - name: Run tests
-        run: pytest tests/ -v --disable-warnings --color=yes
+        run: pytest tests/ --color=yes
