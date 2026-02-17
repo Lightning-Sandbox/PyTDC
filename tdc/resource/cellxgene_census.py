@@ -7,6 +7,18 @@ import tiledbsoma
 from scipy.sparse import csr_matrix
 
 
+# TileDB configuration constants for macOS optimization
+_TILEDB_S3_MAX_PARALLEL_OPS = '16'
+_TILEDB_S3_MULTIPART_PART_SIZE = '52428800'  # 50MB
+_TILEDB_S3_REGION = 'us-west-2'
+
+# Configure TileDB for macOS at module level (runs once on import)
+if platform.system() == 'Darwin':  # macOS
+    os.environ.setdefault('TILEDB_VFS_S3_MAX_PARALLEL_OPS', _TILEDB_S3_MAX_PARALLEL_OPS)
+    os.environ.setdefault('TILEDB_VFS_S3_MULTIPART_PART_SIZE', _TILEDB_S3_MULTIPART_PART_SIZE)
+    os.environ.setdefault('TILEDB_VFS_S3_REGION', _TILEDB_S3_REGION)
+
+
 class CensusResource:
 
     _CENSUS_DATA = "census_data"
@@ -84,16 +96,6 @@ class CensusResource:
         self.census_version = census_version if census_version is not None else self._LATEST_CENSUS
         self.organism = organism if organism is not None else self._HUMAN
         self.dataset = None  # variable to set target census collection to either info or data
-        
-        # Optimize TileDB configuration for better performance on macOS
-        if platform.system() == 'Darwin':  # macOS
-            # Set optimal TileDB configuration for macOS
-            if 'TILEDB_VFS_S3_MAX_PARALLEL_OPS' not in os.environ:
-                os.environ['TILEDB_VFS_S3_MAX_PARALLEL_OPS'] = '16'
-            if 'TILEDB_VFS_S3_MULTIPART_PART_SIZE' not in os.environ:
-                os.environ['TILEDB_VFS_S3_MULTIPART_PART_SIZE'] = '52428800'  # 50MB
-            if 'TILEDB_VFS_S3_REGION' not in os.environ:
-                os.environ['TILEDB_VFS_S3_REGION'] = 'us-west-2'
 
     def fmt_cellxgene_data(self,
                            tiledb_ptr,
