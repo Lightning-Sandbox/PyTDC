@@ -8,6 +8,7 @@ to prevent race conditions and shared state issues in parallel testing.
 
 import os
 import shutil
+from contextlib import suppress
 
 import pytest
 
@@ -32,12 +33,8 @@ def cleanup_shared_directories():
     for directory in ["data", "oracle"]:
         dir_path = os.path.join(root_dir, directory)
         if os.path.exists(dir_path):
-            try:
+            with suppress(FileNotFoundError):
                 shutil.rmtree(dir_path)
-            except FileNotFoundError:
-                # Directory was removed by another worker between check and removal
-                # This is okay, we just want to ensure it's clean
-                pass
 
     # Let tests run
     yield
@@ -47,7 +44,5 @@ def cleanup_shared_directories():
     # for directory in ["data", "oracle"]:
     #     dir_path = os.path.join(root_dir, directory)
     #     if os.path.exists(dir_path):
-    #         try:
+    #         with suppress(FileNotFoundError):
     #             shutil.rmtree(dir_path)
-    #         except FileNotFoundError:
-    #             pass
