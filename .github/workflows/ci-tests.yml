@@ -45,5 +45,30 @@ jobs:
           uv pip install . -U -q -r requires_test.txt $OLD_DEPENDENCIES
           uv pip list
 
+      - name: Cache TileDB SOMA data
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/cellxgene_census
+            ~/.tiledb
+          key: ${{ runner.os }}-cellxgene-census-${{ hashFiles('**/requires_test.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-cellxgene-census-
+
+      - name: Set environment variables for Mac optimization
+        if: runner.os == 'macOS'
+        run: |
+          # Optimize TileDB for macOS
+          echo "TILEDB_VFS_S3_REGION=us-west-2" >> $GITHUB_ENV
+          echo "TILEDB_VFS_S3_MULTIPART_PART_SIZE=52428800" >> $GITHUB_ENV
+          echo "TILEDB_VFS_S3_MAX_PARALLEL_OPS=16" >> $GITHUB_ENV
+          echo "TILEDB_VFS_S3_USE_VIRTUAL_ADDRESSING=true" >> $GITHUB_ENV
+          # Optimize NumPy/BLAS threading
+          echo "OMP_NUM_THREADS=4" >> $GITHUB_ENV
+          echo "OPENBLAS_NUM_THREADS=4" >> $GITHUB_ENV
+          echo "MKL_NUM_THREADS=4" >> $GITHUB_ENV
+          echo "VECLIB_MAXIMUM_THREADS=4" >> $GITHUB_ENV
+          echo "NUMEXPR_NUM_THREADS=4" >> $GITHUB_ENV
+
       - name: Run tests
         run: pytest tests/ -v --disable-warnings --color=yes
