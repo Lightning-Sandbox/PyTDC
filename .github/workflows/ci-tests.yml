@@ -51,4 +51,4 @@ jobs:
           uv pip list
 
       - name: Run tests
-        run: pytest tests/ -v --disable-warnings --color=yes -n auto
+        run: pytest tests/ -v --color=yes -n 2 --dist=loadfile
