@@ -55,9 +55,9 @@ jobs:
           path: |
             ~/.cache/cellxgene_census
             ~/.tiledb
-          key: ${{ runner.os }}-cellxgene-census-${{ hashFiles('**/requires_test.txt') }}
+          key: ${{ runner.os }}-py-${{ matrix.python-version }}-cellxgene-census-${{ hashFiles('**/requires_test.txt') }}
           restore-keys: |
-            ${{ runner.os }}-cellxgene-census-
+            ${{ runner.os }}-py-${{ matrix.python-version }}-cellxgene-census-
 
       - name: Run tests
         run: pytest tests/ -v --disable-warnings --color=yes
