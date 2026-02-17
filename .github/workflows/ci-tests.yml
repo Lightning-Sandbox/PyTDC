@@ -55,15 +55,23 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cellxgene-census-
 
+      # macOS Performance Optimization: Addresses 3x slower test performance (36min vs 13min)
+      # Primary bottleneck: testGeneformerTokenizer test (17.5min on macOS vs 4min on Ubuntu)
+      # Root cause: TileDB SOMA network I/O inefficiency when querying CellxGene Census database
       - name: Set environment variables for Mac optimization
         if: runner.os == 'macOS'
         run: |
-          # Optimize TileDB for macOS
+          # TileDB S3 Configuration: Optimize network operations for macOS
+          # - MAX_PARALLEL_OPS=16: Increase concurrent operations (default is lower)
+          # - MULTIPART_PART_SIZE=52428800: Use 50MB chunks for efficient S3 transfers
+          # - REGION=us-west-2: Explicit region for better routing to CellxGene data
+          # - USE_VIRTUAL_ADDRESSING=true: Modern S3 addressing for better performance
           echo "TILEDB_VFS_S3_REGION=us-west-2" >> $GITHUB_ENV
           echo "TILEDB_VFS_S3_MULTIPART_PART_SIZE=52428800" >> $GITHUB_ENV
           echo "TILEDB_VFS_S3_MAX_PARALLEL_OPS=16" >> $GITHUB_ENV
           echo "TILEDB_VFS_S3_USE_VIRTUAL_ADDRESSING=true" >> $GITHUB_ENV
-          # Optimize NumPy/BLAS threading
+          # NumPy/BLAS Threading: Limit threads to prevent over-subscription on macOS
+          # macOS has different threading behavior; limiting prevents context switching overhead
           echo "OMP_NUM_THREADS=4" >> $GITHUB_ENV
           echo "OPENBLAS_NUM_THREADS=4" >> $GITHUB_ENV
           echo "MKL_NUM_THREADS=4" >> $GITHUB_ENV

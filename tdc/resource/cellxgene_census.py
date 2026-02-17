@@ -1,22 +1,8 @@
-import os
-import platform
 import cellxgene_census
 import gget
 import pandas as pd
 import tiledbsoma
 from scipy.sparse import csr_matrix
-
-
-# TileDB configuration constants for macOS optimization
-_TILEDB_S3_MAX_PARALLEL_OPS = '16'
-_TILEDB_S3_MULTIPART_PART_SIZE = '52428800'  # 50MB
-_TILEDB_S3_REGION = 'us-west-2'
-
-# Configure TileDB for macOS at module level (runs once on import)
-if platform.system() == 'Darwin':  # macOS
-    os.environ.setdefault('TILEDB_VFS_S3_MAX_PARALLEL_OPS', _TILEDB_S3_MAX_PARALLEL_OPS)
-    os.environ.setdefault('TILEDB_VFS_S3_MULTIPART_PART_SIZE', _TILEDB_S3_MULTIPART_PART_SIZE)
-    os.environ.setdefault('TILEDB_VFS_S3_REGION', _TILEDB_S3_REGION)
 
 
 class CensusResource:
