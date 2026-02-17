@@ -32,9 +32,8 @@ def cleanup_shared_directories():
     # Clean up before tests start
     for directory in ["data", "oracle"]:
         dir_path = os.path.join(root_dir, directory)
-        if os.path.exists(dir_path):
-            with suppress(FileNotFoundError):
-                shutil.rmtree(dir_path)
+        with suppress(FileNotFoundError):
+            shutil.rmtree(dir_path)
 
     # Let tests run
     yield
@@ -43,6 +42,5 @@ def cleanup_shared_directories():
     # Commented out to allow inspection of test artifacts
     # for directory in ["data", "oracle"]:
     #     dir_path = os.path.join(root_dir, directory)
-    #     if os.path.exists(dir_path):
-    #         with suppress(FileNotFoundError):
-    #             shutil.rmtree(dir_path)
+    #     with suppress(FileNotFoundError):
+    #         shutil.rmtree(dir_path)
