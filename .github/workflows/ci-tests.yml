@@ -12,12 +12,13 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   pytester:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     strategy:
         fail-fast: false
         matrix:
@@ -50,4 +51,4 @@ jobs:
           uv pip list
 
       - name: Run tests
-        run: pytest tests/ -v --disable-warnings --color=yes
+        run: pytest tests/ -v --color=yes -n 2 --dist=loadfile
