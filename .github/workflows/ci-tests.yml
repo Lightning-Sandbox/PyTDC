@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   pytester:
+    timeout-minutes: 35
     runs-on: ${{ matrix.os }}
     strategy:
         fail-fast: false
